@@ -16,7 +16,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 from names import NAMES, SPECIAL, art
-from verify_font import checks, superset_failures
+from verify_font import checks, closest_calls, superset_failures
 
 HERE = Path(__file__).resolve().parent
 BUILD = HERE.parent / "build"
@@ -124,6 +124,18 @@ def document(glyphs, fig_b):
     w("")
     w(f"  64 glyphs, 448 bytes, {ink} dots set out of 2240 ({ink / 2240 * 100:.1f}%).")
     w("")
+    cc = closest_calls()
+    if cc:
+        w("A dot decodes as set when its sample window at the dot centre is more than")
+        w("half ink. Values near 0.5 are the ones a small change in the fit would flip,")
+        w("so they are where an error would hide. The closest calls in the set are:")
+        w("")
+        for code, r, c, fill in cc:
+            w(f"    0x{code:02X} row {r} col {c}   fill {fill:.2f}"
+              f"   -> {'set' if fill > 0.5 else 'clear'}")
+        w("")
+        w("Anything below about 0.3 or above 0.7 is a comfortable call.")
+        w("")
     fails = superset_failures(glyphs, fig_b)
     w("Cross-check against Figure 3(b): 3(b) is the same character set after the")
     w("chip's inter-dot filling, so every dot in 3(a) must also be present in 3(b).")
@@ -143,6 +155,10 @@ def document(glyphs, fig_b):
     w("  0x06  G  - likewise an unusual open form.")
     w("  0x39  &  - dense; two rows were wrong before the lattice fit was fixed.")
     w("  0x3E  ~  - rises at column 1 and dips at column 3.")
+    w("  0x22  2  - the printed 2 bleeds toward column 1. With a wider sample")
+    w("             window it gained a spurious dot at row 5 column 1, in the")
+    w("             lower left corner. It is clear; see SAMPLE_FRAC in")
+    w("             ../scripts/extract-font.py.")
     w("")
     w("  0x3A-0x3C are the kanji NEN, GETSU and NICHI and 0x3F a telephone symbol.")
     w("  They are Japanese-market characters the VP415 never displays.")

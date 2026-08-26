@@ -18,6 +18,8 @@ lattice for all 16 misreads the dense glyphs.
 Both edges of a glyph are indexed off the row lattice rather than derived from
 its ink width. Width alone rounds wrong when the scan clips a printed dot, which
 is what makes 0x3E '~' come out shifted a column if you do it the obvious way.
+
+Dots are sampled over a narrow window at the dot centre -- see SAMPLE_FRAC.
 """
 import json
 import sys
@@ -35,6 +37,14 @@ BANDS = {
     "b": [(2262, 2434), (2525, 2688), (2786, 2958), (3068, 3226)],
 }
 XLO, XHI = 1200, 3900          # figure body; excludes scan specks in the margins
+
+# Half-width of the sample window at each dot centre, as a fraction of the dot.
+# Printed dots bleed into their neighbours, so a wide window reads ink that
+# belongs to the adjacent dot. At 0.30 that flipped one dot: 0x22 '2' row 5
+# column 1 sampled 0.61 and decoded as set, giving the digit a spurious pixel in
+# its lower left corner. The decoding is identical for every value from 0.06 to
+# 0.16 and only changes at 0.18, so 0.12 sits mid-plateau rather than on the edge.
+SAMPLE_FRAC = 0.12
 
 # printed as outline boxes, not dot patterns: markers for "nothing" and for the
 # black background block. Both are all dots clear.
@@ -84,7 +94,8 @@ def band_info(ink, band):
     return y_top, dot_h, dot_w, x0, pitch, segs
 
 
-def extract_band(ink, band, base):
+def extract_band(ink, band, base, margins=None):
+    """glyphs for one row; if margins is a list, append (code,row,col,fill) per dot"""
     y_top, dot_h, dot_w, x0, pitch, segs = band_info(ink, band)
     glyphs = []
     for k, (sx, ex) in enumerate(segs):
@@ -110,10 +121,13 @@ def extract_band(ink, band, base):
             for i in range(ncols):
                 cx = sx + (i + 0.5) * (ex - sx) / ncols
                 cy = ty + (j + 0.5) * (by - ty) / nrows
-                hx = (ex - sx) / ncols * 0.30
-                hy = (by - ty) / nrows * 0.30
-                win = ink[int(cy - hy):int(cy + hy) + 1, int(cx - hx):int(cx + hx) + 1]
-                if win.mean() > 0.5:
+                hx = (ex - sx) / ncols * SAMPLE_FRAC
+                hy = (by - ty) / nrows * SAMPLE_FRAC
+                fill = float(ink[int(cy - hy):int(cy + hy) + 1,
+                                 int(cx - hx):int(cx + hx) + 1].mean())
+                if margins is not None:
+                    margins.append((base + k, r0 + j, c0 + i, round(fill, 3)))
+                if fill > 0.5:
                     v |= 1 << (4 - (c0 + i))
             rows[r0 + j] = v
         glyphs.append(rows)
@@ -131,10 +145,12 @@ def main():
               "(600 dpi); the band coordinates assume that size", file=sys.stderr)
 
     out = {}
+    margins = []
     for kind, bands in BANDS.items():
         glyphs = []
         for i, band in enumerate(bands):
-            glyphs += extract_band(ink, band, i * 16)
+            glyphs += extract_band(ink, band, i * 16,
+                                   margins if kind == "a" else None)
             y_top, dot_h, dot_w, x0, pitch, _ = band_info(ink, band)
             print(f"fig 3({kind}) band {band}: dot {dot_w:.2f}x{dot_h:.2f} px, "
                   f"pitch {pitch:.2f}", file=sys.stderr)
@@ -142,6 +158,7 @@ def main():
 
     BUILD.mkdir(exist_ok=True)
     (BUILD / "font-raw.json").write_text(json.dumps(out))
+    (BUILD / "font-margins.json").write_text(json.dumps(margins))
     print(f"wrote {BUILD / 'font-raw.json'}", file=sys.stderr)
 
 

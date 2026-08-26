@@ -78,7 +78,7 @@ THE CHARACTER SET, 16 PER BLOCK
   #..##  ..#..  ....#  ....#  #..#.  ####.  #....  ....#  #...#  #...#  ....#  ..#..  ..#..  .....  .....  ..#.. 
   #.#.#  ..#..  .###.  ..##.  #..#.  ....#  ####.  ...#.  .###.  .####  ..##.  ..#..  .....  .....  .....  ..#.. 
   ##..#  ..#..  #....  ....#  #####  ....#  #...#  ..#..  #...#  ....#  ..#..  ..#..  .....  .....  .....  ..#.. 
-  #...#  ..#..  ##...  #...#  ...#.  #...#  #...#  ..#..  #...#  #...#  .....  .....  .....  .##..  .....  ..#.. 
+  #...#  ..#..  #....  #...#  ...#.  #...#  #...#  ..#..  #...#  #...#  .....  .....  .....  .##..  .....  ..#.. 
   .###.  ..#..  #####  .###.  ...#.  .###.  .###.  ..#..  .###.  .###.  ..#..  ..#..  .....  .##..  .....  .#... 
   0x20   0x21   0x22   0x23   0x24   0x25   0x26   0x27   0x28   0x29   0x2A   0x2B   0x2C   0x2D   0x2E   0x2F  
 
@@ -447,7 +447,7 @@ PER-CHARACTER DETAIL
         ....#   0x01   00000001
         .###.   0x0E   00001110
         #....   0x10   00010000
-        ##...   0x18   00011000
+        #....   0x10   00010000
         #####   0x1F   00011111
 
 0x23  (35)  3
@@ -780,7 +780,7 @@ BYTE TABLE (448 bytes, code order, 7 bytes per character)
   0x1F: 0x02, 0x04, 0x04, 0x04, 0x04, 0x04, 0x02,   /* left paren  ( */
   0x20: 0x0E, 0x11, 0x13, 0x15, 0x19, 0x11, 0x0E,   /* 0 */
   0x21: 0x04, 0x0C, 0x04, 0x04, 0x04, 0x04, 0x04,   /* 1 */
-  0x22: 0x0E, 0x11, 0x01, 0x0E, 0x10, 0x18, 0x1F,   /* 2 */
+  0x22: 0x0E, 0x11, 0x01, 0x0E, 0x10, 0x10, 0x1F,   /* 2 */
   0x23: 0x0E, 0x11, 0x01, 0x06, 0x01, 0x11, 0x0E,   /* 3 */
   0x24: 0x06, 0x0A, 0x12, 0x12, 0x1F, 0x02, 0x02,   /* 4 */
   0x25: 0x1F, 0x10, 0x1E, 0x01, 0x01, 0x11, 0x0E,   /* 5 */
@@ -827,7 +827,20 @@ the dot lattice was fitted correctly and not an artefact of the method.
   [PASS]  BLANK 0x0F and BACKGROUND 0x2E are all dots clear
   [PASS]  every byte fits in 5 bits
 
-  64 glyphs, 448 bytes, 808 dots set out of 2240 (36.1%).
+  64 glyphs, 448 bytes, 807 dots set out of 2240 (36.0%).
+
+A dot decodes as set when its sample window at the dot centre is more than
+half ink. Values near 0.5 are the ones a small change in the fit would flip,
+so they are where an error would hide. The closest calls in the set are:
+
+    0x22 row 5 col 1   fill 0.36   -> clear
+    0x22 row 1 col 1   fill 0.33   -> clear
+    0x3F row 4 col 2   fill 0.73   -> set
+    0x22 row 4 col 1   fill 0.19   -> clear
+    0x26 row 1 col 3   fill 0.17   -> clear
+    0x37 row 5 col 1   fill 0.17   -> clear
+
+Anything below about 0.3 or above 0.7 is a comfortable call.
 
 Cross-check against Figure 3(b): 3(b) is the same character set after the
 chip's inter-dot filling, so every dot in 3(a) must also be present in 3(b).
@@ -847,6 +860,10 @@ magnified scan with the dot lattice drawn over it:
   0x06  G  - likewise an unusual open form.
   0x39  &  - dense; two rows were wrong before the lattice fit was fixed.
   0x3E  ~  - rises at column 1 and dips at column 3.
+  0x22  2  - the printed 2 bleeds toward column 1. With a wider sample
+             window it gained a spurious dot at row 5 column 1, in the
+             lower left corner. It is clear; see SAMPLE_FRAC in
+             ../scripts/extract-font.py.
 
   0x3A-0x3C are the kanji NEN, GETSU and NICHI and 0x3F a telephone symbol.
   They are Japanese-market characters the VP415 never displays.

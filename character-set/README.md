@@ -72,7 +72,7 @@ repo flake does not carry poppler, so `fetch-source.sh` falls back to
 `nix shell nixpkgs#poppler-utils` if the binary is not on `PATH`.
 
 The pipeline is deterministic: `results/mb88303-font.bin` has SHA-256
-`291939a7fbc3e0c0c13c44c30f82b959047f34dab9e487489be923f3cee9cd4b`.
+`c6595809d67a5174f48f1a55c7561324ee21f701325875cc04c6c7e6a7476b33`.
 
 ## Results
 
@@ -109,10 +109,20 @@ What supports it:
   (`0x1E`, `0x30`, `0x3E`, `0x3F`) fail because the 3(b) pass is misaligned on
   those glyphs; 3(b) exists here only as a check and was not transcribed
   carefully.
-- `0x03` D, `0x06` G, `0x39` &, and `0x3E` ~ were each confirmed by hand against
-  a magnified scan with the dot lattice drawn over it. D genuinely has its
-  vertical stem in column 1, so the top and bottom bars overhang it to the left
-  — it looks like an error and is not.
+- `0x03` D, `0x06` G, `0x39` &, `0x3E` ~ and `0x22` 2 were each confirmed by
+  hand against a magnified scan with the dot lattice drawn over it. D genuinely
+  has its vertical stem in column 1, so the top and bottom bars overhang it to
+  the left — it looks like an error and is not.
+- `verify_font.py` reports the **closest calls**: the dots whose sample sat
+  nearest the ink/blank threshold, which is where an error would hide. The
+  nearest in the set is currently 0.36 against a threshold of 0.5.
+
+One error has been found and fixed this way. `0x22` 2 had a spurious dot in its
+lower left corner, at row 5 column 1, because the sample window was wide enough
+to catch ink bleeding from the bottom bar and the left stem. The decoding is
+identical for every window from 0.06 to 0.16 of a dot and only changes at 0.18;
+`SAMPLE_FRAC` in `scripts/extract-font.py` is now 0.12, mid-plateau. If you spot
+another, the closest-calls list is the place to look first.
 
 What would settle it beyond doubt is reading a real MB88303, or finding the OSD
 routine in the `DRIVE` disassembly and checking the codes it writes against

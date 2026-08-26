@@ -34,6 +34,21 @@ def checks(g):
     ]
 
 
+def closest_calls(n=6):
+    """the dots whose sample sat nearest the ink/blank threshold.
+
+    A dot decodes as set when its sample window is more than half ink. Values
+    near 0.5 are the ones a small change in the fit would flip, so they are
+    where a transcription error would hide. Anything below about 0.3 or above
+    0.7 is a comfortable call.
+    """
+    path = BUILD / "font-margins.json"
+    if not path.exists():
+        return []
+    m = json.loads(path.read_text())
+    return sorted(m, key=lambda d: abs(d[3] - 0.5))[:n]
+
+
 def superset_failures(fig_a, fig_b):
     """codes where 3(a) has a dot 3(b) lacks -- 3(b) only ever adds dots"""
     return [i for i in range(64)
@@ -50,6 +65,12 @@ def main():
           f"misaligned in 3(b): {', '.join(f'0x{i:02X}' for i in fails) or 'none'}")
     ink = sum(bin(x).count("1") for gl in a for x in gl)
     print(f"  {ink} dots set out of 2240 ({ink / 2240 * 100:.1f}%)")
+    cc = closest_calls()
+    if cc:
+        print("\n  closest calls (sample fill; 0.5 is the ink/blank threshold):")
+        for code, r, c, fill in cc:
+            print(f"    0x{code:02X} row {r} col {c}  fill={fill:.2f}"
+                  f"  -> {'set' if fill > 0.5 else 'clear'}")
 
 
 if __name__ == "__main__":

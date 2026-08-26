@@ -22,7 +22,7 @@ from the documentation:
 | --- | --- | --- |
 | `*-drive-*`, `*-control*` | **MCS-51** (8031/8051, external ROM) | `02 xx xx` (`LJMP`) at 0x0000, and again at the 0x0003 / 0x000B / 0x0013 / 0x001B interrupt vectors — the MCS-51 vector layout exactly |
 | `*8041-slave*` | **MCS-48 / UPI-41A** | Decodes cleanly as MCS-48 from 0x000; `04 09` = `JMP $009`, then `CALL` at the 0x003 IBF vector and `JMP` at the 0x007 timer vector |
-| `*lvdos1*`, `*lvdos2*` | **Z80** | `ED 5B` (`LD DE,(nn)`) at 0x0012 is a Z80-only opcode — an 8080 cannot encode it. The reset code at 0x0000 clears 0xA000–0xFFFF, which locates the module's RAM |
+| `*lvdos1*`, `*lvdos2*` | **Z80**, but running byte code | `ED 5B` (`LD DE,(nn)`) at 0x0012 is a Z80-only opcode — an 8080 cannot encode it. The reset code at 0x0000 clears 0xA000–0xFFFF, which locates the module's RAM. Only about a quarter of the pair is Z80 instructions; the rest is byte code for the interpreter at 0x274B — use `vp-lvdos` |
 | `*sync*`, `*descr*` | **none — data** | No code. `SYNC` has 256 programmed bytes out of 16384; `DESCR` has 7029. They are the lookup tables the manual describes |
 
 `vp-arch` carries this table so you do not have to remember it:
@@ -34,29 +34,35 @@ unidasm=z80
 ghidra=z80:LE:16:default
 base=0x4000
 cpu=Zilog Z80 (module W CPU, 8 MHz)
-note=upper half; 0x4000 base is inferred, not proven -- only 0x4000-0x4F5B is programmed
+note=upper half; only 0x4000-0x4F5B is programmed. Byte code + dispatch table, not Z80 -- use vp-lvdos
 ```
 
-### The one address that is a guess
+### The address that was a guess, and now is not
 
-`LVDOS#2` is placed at **0x4000**, directly above `LVDOS#1`. That is inference,
-not measurement, and it is worth settling early because every address in that
-half depends on it. What supports it:
+`LVDOS#2` is placed at **0x4000**, directly above `LVDOS#1`. This started as
+inference. It is now settled — see
+[`module-w-lvdos-vm.md`](module-w-lvdos-vm.md) §1:
 
-- `LVDOS#1` fills 0x0000–0x3FFF, and reset clears RAM from 0xA000 up, so ROM
-  has room to run contiguously to 0x7FFF.
-- A 25-byte record pattern appears at 0x3FEE in `LVDOS#1` and again 25 bytes
-  later at 0x4007 in `LVDOS#2` under this mapping — a table running across the
-  device boundary.
+- `$0038`, the Z80 IM 1 interrupt vector, holds `jp $4F0A`, and under a 0x4000
+  base `$4F0A` is a textbook interrupt handler inside the programmed region.
+- The reset path reads its stack and heap parameters from `$4F54`–`$4F5B`, the
+  last eight programmed bytes of `LVDOS#2`, and gets sensible values.
+- The byte-code interpreter uses `$4CD4` as its dispatch-table base, and all
+  160 entries land on real code.
 
-What argues against taking it as settled: a linear disassembly of `LVDOS#1`
-shows call and jump targets concentrated in 0x0000–0x2FFF with almost none
-above 0x4000, which is not what you would expect if the second EPROM were
-simply more of the same program. It may be banked, or largely data. Treat
-0x4000 as a working assumption, and pass `-b` to override it.
+The observation that "call and jump targets are concentrated in 0x0000–0x2FFF
+with almost none above 0x4000" turned out to be a symptom of something else
+entirely: **module W does not run LV-DOS as native Z80 code**. LVDOS#1 holds a
+byte-code interpreter, LVDOS#2 holds its opcode dispatch table, and the
+application is byte code in both EPROMs. A linear Z80 disassembly of these two
+images is mostly nonsense, and the apparent shortage of branch targets is
+because there are almost none: only two native routines are ever called.
+
+Use `vp-lvdos` rather than `vp-dis` on this pair.
 
 Remember the manual's warning: revisions 1.3 and 1.4 of LV-DOS are a **matched
-pair**. Do not analyse a 1.3 half against a 1.4 half.
+pair**. Do not analyse a 1.3 half against a 1.4 half — the dispatch table moves
+between them and nothing will decode.
 
 ## The helper commands
 
@@ -103,6 +109,65 @@ vp-ghidra -g original-images/*.bin     # import them all, then open the GUI
 ```
 
 The project lands in `./ghidra-project` by default.
+
+### `vp-lvdos` — decode module W's LV-DOS byte code
+
+`LVDOS#1` and `LVDOS#2` together hold a byte-coded stack machine, not a Z80
+program. This tool finds the interpreter by signature, walks the byte code
+recursively from the program entry point, and separately disassembles the 44
+native hardware primitives:
+
+```console
+$ vp-lvdos original-images/vp415-module-w-ic7247-lvdos1-6805.3-rev1.4-0x8F90.bin \
+           original-images/vp415-module-w-ic7248-lvdos2-6806.3-rev1.4-0x56D7.bin
+p-code interpreter fetch loop  $2C20
+  opcode dispatch table        $4CD4
+p-code entry point             $4287
+native gateway                 $0FC9
+  hardware jump table          $0FDF   (44 selectors)
+p-code procedures found        43
+p-code instructions decoded    5274  (11645 bytes, 0 overlaps)
+wrote disasm/lvdos-pcode.lst and disasm/lvdos-native.lst
+```
+
+`--map` prints that summary plus the primitive table without writing files.
+Because it locates everything by signature it works unchanged on both
+revisions. **Zero overlapping decodes is the self-check**: a wrong operand
+length anywhere would make the instruction streams collide within a few
+instructions.
+
+What the output means is in
+[`module-w-lvdos-vm.md`](module-w-lvdos-vm.md); what the program does with it
+is in
+[`module-w-command-interface.md`](module-w-command-interface.md).
+
+### `vp-mcs51` — disassemble the 8051 ROMs
+
+Module S (control), module R (drive processor) and the VP410 control ROM are
+all MCS-51. Linear disassembly is not much use on them: they are built around
+`jmp @A+DPTR` tables, and module S's command interpreter is nothing but tables.
+This tool does a recursive descent from whichever interrupt vectors hold an
+`ljmp`, resolves the jump tables it meets, and repeats until nothing new turns
+up:
+
+```console
+$ vp-mcs51 original-images/vp415-module-s-ic7202-control-6804.9-rev1.8-0x6728.bin
+  vector reset                  -> $0599
+  vector external interrupt 0   -> $0650
+  vector timer 0                -> $0675
+  vector external interrupt 1   -> $0658
+  vector serial                 -> $0660
+instructions   21675
+bytes decoded  42592 of 53385 programmed (79.8%)
+jump tables    66 resolved, 0 unresolved
+wrote disasm/vp415-module-s-ic7202-control-6804.9-rev1.8-0x6728.lst
+```
+
+`--tables` lists the tables and their entry counts instead of writing a
+listing; `-e ADDR` adds an entry point the vectors do not reach.
+
+What module S's tables mean is in
+[`player-control-command-set.md`](player-control-command-set.md).
 
 ### `vp-fontdump` — find and extract character sets
 
@@ -185,4 +250,11 @@ Any of them is one line in `flake.nix` if a use turns up.
 4. Start Ghidra on the module R drive ROM. It is 16 KB, self-contained, and its
    diagnostic error codes and OSD strings give you named anchors to work back
    from.
-5. Settle the `LVDOS#2` base address before investing in module W.
+5. Module W and the command language are done:
+   [`module-w-command-interface.md`](module-w-command-interface.md) covers the
+   SCSI target interface, and
+   [`player-control-command-set.md`](player-control-command-set.md) covers the
+   ASCII player-control language in module S. The open end is now **module R**,
+   the drive processor: module S queues three-byte register writes to it over
+   the S-bus and this collection does not yet say what any of those registers
+   do. `vp-mcs51` decodes that image too.

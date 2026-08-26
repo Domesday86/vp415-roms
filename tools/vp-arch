@@ -69,14 +69,14 @@ for image in "$@"; do
             unidasm=z80
             ghidra='z80:LE:16:default'
             cpu='Zilog Z80 (module W CPU, 8 MHz)'
-            note='lower half of the LV-DOS program; RAM is cleared at 0xA000-0xFFFF on reset'
+            note='lower half; mostly byte code for the interpreter at 0x274B -- use vp-lvdos. RAM is cleared at 0xA000-0xFFFF on reset'
             ;;
         *lvdos2*)
             unidasm=z80
             ghidra='z80:LE:16:default'
             base=0x4000
             cpu='Zilog Z80 (module W CPU, 8 MHz)'
-            note='upper half; 0x4000 base is inferred, not proven -- only 0x4000-0x4F5B is programmed'
+            note='upper half; only 0x4000-0x4F5B is programmed. Byte code + dispatch table, not Z80 -- use vp-lvdos'
             ;;
         *drive*|*control*)
             unidasm=i8051

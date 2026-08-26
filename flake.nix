@@ -42,14 +42,28 @@
               --replace-fail '#!/usr/bin/env python3' '#!${pythonEnv}/bin/python3'
             chmod +x $out/bin/vp-fontdump
           '';
+
+          vp-lvdos = pkgs.runCommand "vp-lvdos" { } ''
+            mkdir -p $out/bin
+            substitute ${./tools/vp-lvdos.py} $out/bin/vp-lvdos \
+              --replace-fail '#!/usr/bin/env python3' '#!${pythonEnv}/bin/python3'
+            chmod +x $out/bin/vp-lvdos
+          '';
+
+          vp-mcs51 = pkgs.runCommand "vp-mcs51" { } ''
+            mkdir -p $out/bin
+            substitute ${./tools/vp-mcs51.py} $out/bin/vp-mcs51 \
+              --replace-fail '#!/usr/bin/env python3' '#!${pythonEnv}/bin/python3'
+            chmod +x $out/bin/vp-mcs51
+          '';
         in
         {
-          inherit vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump pythonEnv;
+          inherit vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump vp-lvdos vp-mcs51 pythonEnv;
 
           # Every helper in one derivation, for `nix profile install`.
           vp-tools = pkgs.symlinkJoin {
             name = "vp-tools";
-            paths = [ vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump ];
+            paths = [ vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump vp-lvdos vp-mcs51 ];
           };
 
           default = self.packages.${pkgs.stdenv.hostPlatform.system}.vp-tools;
@@ -58,9 +72,9 @@
       devShells = forAllSystems (pkgs:
         let
           inherit (self.packages.${pkgs.stdenv.hostPlatform.system})
-            vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump pythonEnv;
+            vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump vp-lvdos vp-mcs51 pythonEnv;
 
-          helpers = [ vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump ];
+          helpers = [ vp-arch vp-sum16 vp-dis vp-ghidra vp-fontdump vp-lvdos vp-mcs51 ];
 
           # Disassembly and static analysis.
           #
@@ -116,6 +130,8 @@
             echo "            vp-sum16    verify an image against Philips' sum16"
             echo "            vp-dis      linear disassembly with the right arch preselected"
             echo "            vp-fontdump render ROM regions as bitmaps (find the OSD font)"
+            echo "            vp-lvdos    decode module W's LV-DOS byte code"
+            echo "            vp-mcs51    disassemble the 8051 ROMs, tables resolved"
             ${tools}
             echo ""
             echo "  start     vp-sum16 original-images/*.bin"

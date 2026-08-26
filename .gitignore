@@ -13,3 +13,7 @@ ghidra-project/
 disasm/
 extracted/
 .DS_Store
+
+# Python bytecode
+__pycache__/
+*.pyc

@@ -1,0 +1,88 @@
+# Import a VP415/VP410 ROM into a Ghidra project with the right language and
+# base address already set, then run the auto-analyser.
+#
+# Ghidra's import dialog asks four questions you have to get right before it
+# will produce anything useful -- processor, endianness, load address and image
+# base. vp-arch knows the answers for these images, so this wrapper fills them
+# in. Afterwards open the project in the Ghidra GUI and carry on by hand.
+
+usage() {
+    cat <<'EOF'
+usage: vp-ghidra [OPTIONS] IMAGE...
+
+Options:
+  -p DIR    Ghidra project directory (default: ./ghidra-project)
+  -n NAME   Ghidra project name (default: vp415)
+  -l LANG   override the Ghidra language id
+  -b BASE   override the image base address
+  -A        import only, skip auto-analysis
+  -g        open the Ghidra GUI on the project when the imports finish
+  -h        this help
+
+The project is a plain directory you can commit, ignore, or delete. Ghidra
+itself is on PATH in this shell as `ghidra`.
+EOF
+}
+
+project_dir=./ghidra-project
+project_name=vp415
+lang=
+base=
+analyse=1
+open_gui=0
+
+while getopts ':p:n:l:b:Agh' opt; do
+    case "$opt" in
+        p) project_dir="$OPTARG" ;;
+        n) project_name="$OPTARG" ;;
+        l) lang="$OPTARG" ;;
+        b) base="$OPTARG" ;;
+        A) analyse=0 ;;
+        g) open_gui=1 ;;
+        h) usage; exit 0 ;;
+        *) usage >&2; exit 2 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ "$#" -eq 0 ]; then
+    usage >&2
+    exit 2
+fi
+
+mkdir -p "$project_dir"
+
+for image in "$@"; do
+    if [ ! -f "$image" ]; then
+        printf '%s: no such file\n' "$image" >&2
+        exit 1
+    fi
+
+    l=$lang
+    b=$base
+    [ -z "$l" ] && l=$(vp-arch -f ghidra "$image")
+    [ -z "$b" ] && b=$(vp-arch -f base "$image")
+
+    if [ -z "$l" ]; then
+        printf '%s: %s -- no Ghidra language for this image, pass -l to force one\n' \
+            "$(basename "$image")" "$(vp-arch -f kind "$image")" >&2
+        continue
+    fi
+
+    printf '==> %s  as %s at %s\n' "$(basename "$image")" "$l" "$b"
+
+    cmd=(ghidra-analyzeHeadless "$project_dir" "$project_name"
+         -import "$image"
+         -processor "$l"
+         -loader BinaryLoader
+         -loader-baseAddr "$b"
+         -overwrite)
+    [ "$analyse" -eq 0 ] && cmd+=(-noanalysis)
+
+    "${cmd[@]}"
+done
+
+if [ "$open_gui" -eq 1 ]; then
+    printf '==> opening Ghidra on %s/%s\n' "$project_dir" "$project_name"
+    ghidra &
+fi

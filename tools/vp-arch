@@ -1,0 +1,117 @@
+# Print the CPU / memory-map facts for a VP415 or VP410 ROM image.
+#
+# The mapping is keyed off the image file names used in original-images/.
+# Every entry here was confirmed against the bytes themselves, not guessed
+# from the service manual -- see docs/tooling.md for the evidence.
+
+usage() {
+    cat <<'EOF'
+usage: vp-arch [-f FIELD] IMAGE...
+
+Prints KEY=VALUE lines describing how to disassemble IMAGE:
+
+  kind      code | data
+  unidasm   architecture name for `unidasm -arch`
+  ghidra    Ghidra language id
+  base      load address of the image within the CPU's address space
+  cpu       human-readable part
+  note      anything worth knowing before you start
+
+Options:
+  -f FIELD  print only that field's value, bare (for use in scripts)
+  -h        this help
+EOF
+}
+
+field=
+
+while getopts ':f:h' opt; do
+    case "$opt" in
+        f) field="$OPTARG" ;;
+        h) usage; exit 0 ;;
+        *) usage >&2; exit 2 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ "$#" -eq 0 ]; then
+    usage >&2
+    exit 2
+fi
+
+emit() {
+    # emit KEY VALUE -- honours -f
+    if [ -z "$field" ]; then
+        printf '%s=%s\n' "$1" "$2"
+    elif [ "$field" = "$1" ]; then
+        printf '%s\n' "$2"
+    fi
+}
+
+for image in "$@"; do
+    name=$(basename "$image")
+
+    kind=code
+    unidasm=
+    ghidra=
+    base=0x0000
+    cpu=
+    note=
+
+    case "$name" in
+        *8041*)
+            unidasm=upi41
+            ghidra='8048:LE:16:default'
+            cpu='NEC D8041AHC (UPI-41A), 1 KB mask ROM, 64 B RAM'
+            note='reset 0x000, IBF interrupt 0x003, timer interrupt 0x007'
+            ;;
+        *lvdos1*)
+            unidasm=z80
+            ghidra='z80:LE:16:default'
+            cpu='Zilog Z80 (module W CPU, 8 MHz)'
+            note='lower half of the LV-DOS program; RAM is cleared at 0xA000-0xFFFF on reset'
+            ;;
+        *lvdos2*)
+            unidasm=z80
+            ghidra='z80:LE:16:default'
+            base=0x4000
+            cpu='Zilog Z80 (module W CPU, 8 MHz)'
+            note='upper half; 0x4000 base is inferred, not proven -- only 0x4000-0x4F5B is programmed'
+            ;;
+        *drive*|*control*)
+            unidasm=i8051
+            ghidra='8051:BE:16:default'
+            cpu='Intel MCS-51 family, external ROM'
+            note='LJMP vectors at 0x0000 reset, 0x0003 INT0, 0x000B T0, 0x0013 INT1, 0x001B T1'
+            ;;
+        *sync*)
+            kind=data
+            cpu='none -- combinatorial lookup table'
+            note='sequencer labyrinth; only 256 of 16384 bytes are programmed'
+            ;;
+        *descr*)
+            kind=data
+            cpu='none -- lookup table'
+            note='descrambler XOR table read onto the F bus; 7029 of 16384 bytes programmed'
+            ;;
+        *)
+            kind=unknown
+            note='file name not recognised -- pass --arch/--base explicitly'
+            ;;
+    esac
+
+    if [ -z "$field" ] && [ "$#" -gt 1 ]; then
+        printf '# %s\n' "$name"
+    fi
+
+    emit kind "$kind"
+    [ -n "$unidasm" ] && emit unidasm "$unidasm"
+    [ -n "$ghidra" ] && emit ghidra "$ghidra"
+    emit base "$base"
+    emit cpu "$cpu"
+    emit note "$note"
+
+    if [ -z "$field" ] && [ "$#" -gt 1 ]; then
+        printf '\n'
+    fi
+done

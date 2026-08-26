@@ -1,0 +1,79 @@
+# Verify a ROM image against Philips' own checksum.
+#
+# sum16 is a plain 16-bit sum of every byte, sum(bytes) & 0xFFFF -- the number
+# printed on the EPROM sticker and in the manual's survey of software releases.
+# The images in original-images/ carry it in their file names, so a bare
+# `vp-sum16 original-images/*.bin` is a full self-check of the collection.
+
+usage() {
+    cat <<'EOF'
+usage: vp-sum16 [-q] IMAGE...
+
+Prints size, sum16 and SHA-256 for each image. When the file name contains a
+0xXXXX checksum, compares against it and reports OK or MISMATCH.
+
+Options:
+  -q  print only mismatches (exit status still reflects the result)
+  -h  this help
+
+Exit status: 0 if every image with a checksum in its name matched.
+EOF
+}
+
+quiet=0
+
+while getopts ':qh' opt; do
+    case "$opt" in
+        q) quiet=1 ;;
+        h) usage; exit 0 ;;
+        *) usage >&2; exit 2 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ "$#" -eq 0 ]; then
+    usage >&2
+    exit 2
+fi
+
+status=0
+
+for image in "$@"; do
+    if [ ! -f "$image" ]; then
+        printf '%s: no such file\n' "$image" >&2
+        status=1
+        continue
+    fi
+
+    name=$(basename "$image")
+    size=$(wc -c < "$image" | tr -d ' ')
+    sum16=$(python3 -c 'import sys; print(f"0x{sum(sys.stdin.buffer.read()) & 0xFFFF:04X}")' < "$image")
+    sha=$(sha256sum "$image" | cut -d' ' -f1)
+
+    # pull a 0xXXXX out of the file name, if there is one
+    expected=$(printf '%s\n' "$name" | grep -oE '0[xX][0-9A-Fa-f]{4}' | tail -1 \
+        | tr '[:lower:]' '[:upper:]' | sed 's/^0X/0x/')
+
+    verdict=
+    if [ -n "$expected" ]; then
+        if [ "$expected" = "$sum16" ]; then
+            verdict='OK'
+        else
+            verdict="MISMATCH (name says $expected)"
+            status=1
+        fi
+    else
+        verdict='no checksum in file name'
+    fi
+
+    if [ "$quiet" -eq 1 ] && [ "$verdict" = 'OK' ]; then
+        continue
+    fi
+
+    printf '%s\n' "$name"
+    printf '  size    %s bytes\n' "$size"
+    printf '  sum16   %s  %s\n' "$sum16" "$verdict"
+    printf '  sha256  %s\n' "$sha"
+done
+
+exit "$status"

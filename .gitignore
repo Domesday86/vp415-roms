@@ -1,0 +1,14 @@
+# Nix build symlinks
+result
+result-*
+
+# Ghidra projects (vp-ghidra default location)
+ghidra-project/
+*.rep/
+*.gpr
+*.lock
+*.lock~
+
+# Generated listings and extracted assets
+disasm/
+extracted/

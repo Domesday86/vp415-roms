@@ -1,0 +1,83 @@
+# Linear-disassemble a VP415/VP410 ROM with the right CPU and load address.
+#
+# This is MAME's unidasm with the per-image knowledge from vp-arch applied, so
+# `vp-dis original-images/<anything>.bin` just works. Linear disassembly walks
+# straight through data tables and produces nonsense there -- it is for getting
+# a first look and for grepping, not for a finished listing. Use Ghidra
+# (vp-ghidra) once you want real control flow.
+
+usage() {
+    cat <<'EOF'
+usage: vp-dis [OPTIONS] IMAGE...
+
+Options:
+  -a ARCH   override the unidasm architecture (upi41, i8051, z80, ...)
+  -b BASE   override the load address, e.g. 0x4000
+  -o DIR    write DIR/<image>.asm instead of printing to stdout
+  -r        keep raw hex bytes in the listing (default: keep)
+  -R        strip raw hex bytes, leaving just addresses and mnemonics
+  -h        this help
+EOF
+}
+
+arch=
+base=
+outdir=
+rawbytes=1
+
+while getopts ':a:b:o:rRh' opt; do
+    case "$opt" in
+        a) arch="$OPTARG" ;;
+        b) base="$OPTARG" ;;
+        o) outdir="$OPTARG" ;;
+        r) rawbytes=1 ;;
+        R) rawbytes=0 ;;
+        h) usage; exit 0 ;;
+        *) usage >&2; exit 2 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ "$#" -eq 0 ]; then
+    usage >&2
+    exit 2
+fi
+
+[ -n "$outdir" ] && mkdir -p "$outdir"
+
+for image in "$@"; do
+    if [ ! -f "$image" ]; then
+        printf '%s: no such file\n' "$image" >&2
+        exit 1
+    fi
+
+    a=$arch
+    b=$base
+    [ -z "$a" ] && a=$(vp-arch -f unidasm "$image")
+    [ -z "$b" ] && b=$(vp-arch -f base "$image")
+
+    if [ -z "$a" ]; then
+        kind=$(vp-arch -f kind "$image")
+        printf '%s: %s, no CPU to disassemble with -- pass -a ARCH to force it\n' \
+            "$(basename "$image")" "$kind" >&2
+        continue
+    fi
+
+    cmd=(unidasm "$image" -arch "$a" -basepc "$b" -lower)
+    [ "$rawbytes" -eq 0 ] && cmd+=(-norawbytes)
+
+    if [ -n "$outdir" ]; then
+        dest="$outdir/$(basename "${image%.*}").asm"
+        {
+            printf '; %s\n' "$(basename "$image")"
+            printf '; %s\n' "$(vp-arch -f cpu "$image")"
+            printf '; loaded at %s, disassembled linearly by unidasm -arch %s\n' "$b" "$a"
+            printf '; NOTE: %s\n' "$(vp-arch -f note "$image")"
+            printf ';\n'
+            "${cmd[@]}"
+        } > "$dest"
+        printf 'wrote %s\n' "$dest"
+    else
+        "${cmd[@]}"
+    fi
+done

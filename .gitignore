@@ -12,3 +12,4 @@ ghidra-project/
 # Generated listings and extracted assets
 disasm/
 extracted/
+.DS_Store

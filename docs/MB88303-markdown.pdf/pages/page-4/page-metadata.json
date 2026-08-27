@@ -1,0 +1,75 @@
+{
+  "index": 3,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 70,
+      "topLeftY": 59,
+      "bottomRightX": 121,
+      "bottomRightY": 70,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 70,
+      "topLeftY": 132,
+      "bottomRightX": 163,
+      "bottomRightY": 145,
+      "content": "Pin Description",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 70,
+      "topLeftY": 146,
+      "bottomRightX": 132,
+      "bottomRightY": 158,
+      "content": "(Continued)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 110,
+      "topLeftY": 166,
+      "bottomRightX": 205,
+      "bottomRightY": 179,
+      "content": "Television Interface",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 230,
+      "topLeftY": 146,
+      "bottomRightX": 710,
+      "bottomRightY": 613,
+      "content": "|  Symbol | Pin No. | Type | Function  |\n| --- | --- | --- | --- |\n|  HSYNC | 8 | I | Horizontal synchronization input: HSYNC pulses are supplied by the TV set connected. This signal is the same as the horizontal sync signal of the TV display, which controls display start position. The MB88303 starts to output character bit patterns on the VOW output, triggered by HYSNC pulse. This pin is a non-TTL compatible hysteresis input with an internal pull up.  |\n|  VSYNC | 7 | I | Vertical synchronization input: VSYNC pulses are supplied by the TV set connected. This signal is the same as the vertical sync signal of TV display, which controls display starts position. The MB88303 starts to output character bit patterns on the VOW output, triggered by VSYNC pulse. This pin is a non-TTL compatible hysteresis input with an internal pull up.  |\n|  VOW | 5 | O | White-level video signal output: The device serially outputs character dot patterns on VOW synchronously with HYSNC pulses. This signal is used for brightness modulation of the TV display. This signal is superimposed on the normal TV video signal. This pin is a TTL compatible output.  |\n|  VOB | 6 | O | Black-level video signal output: This signal is supplied to the TV to improve clarity of displayed characters when BLK and BLKB bits of the blinking register are set. This pin is a TTL compatible output.  |\n|  DO2-DO0 | 4-2 | O | 3-bit parallel output port: Data written into the general output register appears on pins DO₂-DO₀ These signals are used for other attribute control to TV. These are latched open-drain outputs.  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 71,
+      "topLeftY": 929,
+      "bottomRightX": 132,
+      "bottomRightY": 942,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 386,
+      "topLeftY": 961,
+      "bottomRightX": 410,
+      "bottomRightY": 972,
+      "content": "4-84",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

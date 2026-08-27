@@ -1,0 +1,95 @@
+{
+  "index": 1,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 69,
+      "topLeftY": 62,
+      "bottomRightX": 120,
+      "bottomRightY": 72,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 69,
+      "topLeftY": 136,
+      "bottomRightX": 179,
+      "bottomRightY": 161,
+      "content": "# Pin Assignment\nAnd Logic Symbol",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 234,
+      "topLeftY": 160,
+      "bottomRightX": 372,
+      "bottomRightY": 286,
+      "content": "![img-1.jpeg](img-1.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-3.jpeg"
+    },
+    {
+      "topLeftX": 398,
+      "topLeftY": 160,
+      "bottomRightX": 709,
+      "bottomRightY": 346,
+      "content": "![img-2.jpeg](img-2.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-3.jpeg"
+    },
+    {
+      "topLeftX": 67,
+      "topLeftY": 366,
+      "bottomRightX": 157,
+      "bottomRightY": 380,
+      "content": "# Block Diagram",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 65,
+      "topLeftY": 389,
+      "bottomRightX": 686,
+      "bottomRightY": 755,
+      "content": "![img-3.jpeg](img-3.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-3.jpeg"
+    },
+    {
+      "topLeftX": 110,
+      "topLeftY": 756,
+      "bottomRightX": 420,
+      "bottomRightY": 766,
+      "content": "• THESE REGISTERS ARE DESIGNATED BY ONE ADDRESS AS THE DISPLAY CONTROL REGISTER.",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 68,
+      "topLeftY": 932,
+      "bottomRightX": 129,
+      "bottomRightY": 945,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 382,
+      "topLeftY": 965,
+      "bottomRightX": 406,
+      "bottomRightY": 976,
+      "content": "4-82",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "index": 7,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 73,
+      "topLeftY": 70,
+      "bottomRightX": 124,
+      "bottomRightY": 82,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 70,
+      "topLeftY": 152,
+      "bottomRightX": 193,
+      "bottomRightY": 179,
+      "content": "# Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 157,
+      "bottomRightX": 357,
+      "bottomRightY": 170,
+      "content": "# Display Control Register",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 233,
+      "topLeftY": 179,
+      "bottomRightX": 380,
+      "bottomRightY": 204,
+      "content": "(1) Horizontal Character Size\nRegister [HSZ1 and HSZ0]",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 234,
+      "topLeftY": 208,
+      "bottomRightX": 380,
+      "bottomRightY": 288,
+      "content": "These bits indicate the width\nof the characters. Character\nwidth is selectable from 4\nvalues determined by setting\nHSZ1 and HSZ0 as shown in\nTable 2. The reset input rests\nboth bits to zero.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 307,
+      "bottomRightX": 384,
+      "bottomRightY": 364,
+      "content": "Note: T is the period of\noscillation frequency Q. When\nthe oscillation frequency is Q\n[Hz], the period at that time\nT[s] is 1/Q.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 374,
+      "bottomRightX": 369,
+      "bottomRightY": 399,
+      "content": "(2) Vertical Character Size\nRegister [VSZ1 and VSZ0]",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 401,
+      "bottomRightX": 386,
+      "bottomRightY": 479,
+      "content": "These bits indicate the height\nof the characters. Character\nheight is selectable from 4\nvalues by setting VSZ1 and\nVSZ0 as shown in Table 3.\nThe reset input rests both bits\nto zero.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 490,
+      "bottomRightX": 370,
+      "bottomRightY": 524,
+      "content": "Note: 1H (horizontal line) =\n63.5μs. One screen at\nnon-interlace scan is 262.5H.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 533,
+      "bottomRightX": 371,
+      "bottomRightY": 558,
+      "content": "(3) Blinking Register [BLK,\nBLKB and BLINK]",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 567,
+      "bottomRightX": 382,
+      "bottomRightY": 581,
+      "content": "— Display Blanking Bit [BLK]",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 582,
+      "bottomRightX": 383,
+      "bottomRightY": 651,
+      "content": "This bit indicates the status of\nthe characters display. When\nBLK is zero, no data is\ndisplayed; to enable display,\nset BLK to \"1\". The reset input\nresets BLK to zero.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 661,
+      "bottomRightX": 373,
+      "bottomRightY": 685,
+      "content": "— Background Blanking Bit\n[BLKB]",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 687,
+      "bottomRightX": 385,
+      "bottomRightY": 778,
+      "content": "This bit indicates the status of\nthe background display. When\nBLKB is zero, background is\nnot displayed regardless of\ndata content; to enable\nbackground display, set BLKB\nto 1. The reset input resets\nBLKB to zero.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 788,
+      "bottomRightX": 386,
+      "bottomRightY": 803,
+      "content": "— Blinking Enable Bit [BLINK]",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 235,
+      "topLeftY": 805,
+      "bottomRightX": 386,
+      "bottomRightY": 918,
+      "content": "This bit turns blinking on and\noff. When BLINK is zero,\nblinking is disabled regardless\nof blink control bit value of the\ndisplay memory input; when\nBLINK is \"1\", blinking is\nenabled, provided that the\nblink control bit of the display\nmemory is set to \"1\". The reset\ninput resets BLINK to zero.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 400,
+      "topLeftY": 157,
+      "bottomRightX": 613,
+      "bottomRightY": 171,
+      "content": "Figure 8. Display Control Register Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 399,
+      "topLeftY": 181,
+      "bottomRightX": 707,
+      "bottomRightY": 305,
+      "content": "![img-13.jpeg](img-13.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-13.jpeg"
+    },
+    {
+      "topLeftX": 402,
+      "topLeftY": 322,
+      "bottomRightX": 577,
+      "bottomRightY": 335,
+      "content": "Table 2. Horizontal Character Size",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 399,
+      "topLeftY": 346,
+      "bottomRightX": 715,
+      "bottomRightY": 472,
+      "content": "|  Code |   | Size |   | Size  |   |\n| --- | --- | --- | --- | --- | --- |\n|  HSZ1 | HSZ0 | Character | Dot | Character (when Q = 6MHz, T = 167ns) | Dot  |\n|  0 | 0 | 10T | 2T | 1.67μs | 0.33μs  |\n|  0 | 1 | 20T | 4T | 3.34μs | 0.67μs  |\n|  1 | 0 | 30T | 6T | 5.01μs | 1.0μs  |\n|  1 | 1 | 40T | 8T | 6.68μs | 1.34μs  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 401,
+      "topLeftY": 475,
+      "bottomRightX": 561,
+      "bottomRightY": 488,
+      "content": "Table 3. Vertical Character Size",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 399,
+      "topLeftY": 492,
+      "bottomRightX": 715,
+      "bottomRightY": 583,
+      "content": "|  Code |   | Size  |   |\n| --- | --- | --- | --- |\n|  VSZ1 | VSZ0 | Character | Dot  |\n|  0 | 0 | 14H | 2H  |\n|  0 | 1 | 28H | 4H  |\n|  1 | 0 | 42H | 6H  |\n|  1 | 1 | 56H | 8H  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 401,
+      "topLeftY": 585,
+      "bottomRightX": 613,
+      "bottomRightY": 600,
+      "content": "Figure 9. General Output Register Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 400,
+      "topLeftY": 605,
+      "bottomRightX": 634,
+      "bottomRightY": 733,
+      "content": "![img-14.jpeg](img-14.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-14.jpeg"
+    },
+    {
+      "topLeftX": 400,
+      "topLeftY": 752,
+      "bottomRightX": 615,
+      "bottomRightY": 767,
+      "content": "Figure 10(a). Direct Address Mode Timing",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 399,
+      "topLeftY": 776,
+      "bottomRightX": 700,
+      "bottomRightY": 935,
+      "content": "![img-15.jpeg](img-15.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-15.jpeg"
+    },
+    {
+      "topLeftX": 73,
+      "topLeftY": 940,
+      "bottomRightX": 133,
+      "bottomRightY": 954,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 386,
+      "topLeftY": 973,
+      "bottomRightX": 409,
+      "bottomRightY": 984,
+      "content": "4-88",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

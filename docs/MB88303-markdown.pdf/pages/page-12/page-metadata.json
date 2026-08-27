@@ -1,0 +1,94 @@
+{
+  "index": 11,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 69,
+      "topLeftY": 75,
+      "bottomRightX": 120,
+      "bottomRightY": 87,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 66,
+      "topLeftY": 156,
+      "bottomRightX": 191,
+      "bottomRightY": 184,
+      "content": "Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 232,
+      "topLeftY": 159,
+      "bottomRightX": 393,
+      "bottomRightY": 174,
+      "content": "Figure 15. Application Example",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 232,
+      "topLeftY": 184,
+      "bottomRightX": 705,
+      "bottomRightY": 445,
+      "content": "![img-28.jpeg](img-28.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-28.jpeg"
+    },
+    {
+      "topLeftX": 67,
+      "topLeftY": 528,
+      "bottomRightX": 185,
+      "bottomRightY": 556,
+      "content": "Absolute Maximum\nRatings",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 230,
+      "topLeftY": 540,
+      "bottomRightX": 708,
+      "bottomRightY": 685,
+      "content": "|  Parameter | Symbol | Pin | Rating | Unit  |\n| --- | --- | --- | --- | --- |\n|  Supply Voltage | V_{CC} | V_{CC} | V_{SS} -0.3 to V_{SS} +7.0 | V  |\n|  Input Voltage | V_{IN} | EX, RESET, ADM, LDI, DA7-DA0 | V_{SS} -0.3 to V_{SS} +7.0 | V  |\n|  Output Voltage | V_{OUT} | VOW, VOB | V_{SS} -0.3 to V_{SS} +7.0 | V  |\n|   |   |  DO0-DO2 | V_{SS} -0.3 to V_{SS} +15  |   |\n|  Operating Temperature | T_{A} |  | -30 to +70 | °C  |\n|  Storage Temperature | T_{stg} |  | -55 to +150 | °C  |\n|  Power Dissipation | P_{D} |  | 600 | mW  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 230,
+      "topLeftY": 693,
+      "bottomRightX": 693,
+      "bottomRightY": 726,
+      "content": "Note: Permanent device damage may occur if ABSOLUTE MAXIMUM RATINGS are exceeded. Functional operation should be restricted to the conditions as detailed in the operational sections of this data sheet. Exposure to absolute maximum rating conditions for extended periods may affect device reliability.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 69,
+      "topLeftY": 945,
+      "bottomRightX": 129,
+      "bottomRightY": 957,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 382,
+      "topLeftY": 975,
+      "bottomRightX": 405,
+      "bottomRightY": 986,
+      "content": "4-92",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

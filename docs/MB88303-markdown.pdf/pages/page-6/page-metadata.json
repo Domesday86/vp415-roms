@@ -1,0 +1,85 @@
+{
+  "index": 5,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 71,
+      "topLeftY": 60,
+      "bottomRightX": 122,
+      "bottomRightY": 71,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 69,
+      "topLeftY": 143,
+      "bottomRightX": 205,
+      "bottomRightY": 169,
+      "content": "Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 234,
+      "topLeftY": 146,
+      "bottomRightX": 483,
+      "bottomRightY": 170,
+      "content": "Figure 3(a). Internal Character Dot Patterns\n(Character Generator ROM Patterns)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 231,
+      "topLeftY": 176,
+      "bottomRightX": 714,
+      "bottomRightY": 367,
+      "content": "![img-7.jpeg](img-7.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-7.jpeg"
+    },
+    {
+      "topLeftX": 232,
+      "topLeftY": 381,
+      "bottomRightX": 465,
+      "bottomRightY": 408,
+      "content": "Figure 3(b). Displayed Character Dot Patterns\n(Format with \"Filling\" Function)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 230,
+      "topLeftY": 414,
+      "bottomRightX": 711,
+      "bottomRightY": 604,
+      "content": "![img-8.jpeg](img-8.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-8.jpeg"
+    },
+    {
+      "topLeftX": 70,
+      "topLeftY": 929,
+      "bottomRightX": 131,
+      "bottomRightY": 941,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 384,
+      "topLeftY": 961,
+      "bottomRightX": 409,
+      "bottomRightY": 973,
+      "content": "4-86",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

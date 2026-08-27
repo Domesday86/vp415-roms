@@ -1,0 +1,270 @@
+{
+  "index": 9,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 76,
+      "topLeftY": 64,
+      "bottomRightX": 128,
+      "bottomRightY": 74,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 72,
+      "topLeftY": 148,
+      "bottomRightX": 195,
+      "bottomRightY": 174,
+      "content": "# Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 238,
+      "topLeftY": 151,
+      "bottomRightX": 361,
+      "bottomRightY": 173,
+      "content": "# Display Starting Position\nControl",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 237,
+      "topLeftY": 179,
+      "bottomRightX": 384,
+      "bottomRightY": 281,
+      "content": "The horizontal and vertical\ndisplay starting points on the\nTV screen are determined by\nspecifying the position at\nwhich the black background\ndisplay begins. This is done\nwith the values of addresses\nHP5 to HP0 and VP5 to VP0\nas shown in Fig. 6 and Fig. 7.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 237,
+      "topLeftY": 290,
+      "bottomRightX": 389,
+      "bottomRightY": 336,
+      "content": "The horizontal starting position\nHS and the vertical start\nposition VS may be found\nusing the following equations:",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 237,
+      "topLeftY": 337,
+      "bottomRightX": 382,
+      "bottomRightY": 372,
+      "content": "HS = T × 4 [2⁵ × HP5 + 2⁴ ×\nHP4 + 2³ × HP3 + 2² × HP2²\n+ 2 × HP1 + HP0) + P]",
+      "confidenceScores": null,
+      "type": "equation"
+    },
+    {
+      "topLeftX": 237,
+      "topLeftY": 376,
+      "bottomRightX": 387,
+      "bottomRightY": 412,
+      "content": "VS = H × 4 (2⁵ × VP5 + 2⁴ ×\nVP4 + 2³ × VP3 + 2² × VP2 + 2 ×\nVP1 + VP0)",
+      "confidenceScores": null,
+      "type": "equation"
+    },
+    {
+      "topLeftX": 237,
+      "topLeftY": 415,
+      "bottomRightX": 389,
+      "bottomRightY": 496,
+      "content": "where: P = width of character,\nfrom Table 4;\nT = 1/fc [fc = oscillating\nfrequency; 6MHz typ.]\nH = period of horizontal\nsynchronization signal\n[63.5μs typ.]",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 239,
+      "topLeftY": 504,
+      "bottomRightX": 322,
+      "bottomRightY": 516,
+      "content": "# Blinking Control",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 238,
+      "topLeftY": 519,
+      "bottomRightX": 390,
+      "bottomRightY": 632,
+      "content": "The MB88303 supports\nblinking of any desired\ncharacter(s) on the screen.\nBlinking affects only those\ncharacters for which the\nblinking bit is set to 1. Display\nis on for approximately 0.5s\nand off for the same period\n(vertical synchronization\npulse x 64).",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 403,
+      "topLeftY": 163,
+      "bottomRightX": 490,
+      "bottomRightY": 175,
+      "content": "Table 4. P Values",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 403,
+      "topLeftY": 179,
+      "bottomRightX": 719,
+      "bottomRightY": 263,
+      "content": "|  HSZ1 | HSZ0 | P  |\n| --- | --- | --- |\n|  0 | 0 | 9  |\n|  0 | 1 | 10  |\n|  1 | 0 | 11  |\n|  1 | 1 | 12  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 403,
+      "topLeftY": 292,
+      "bottomRightX": 577,
+      "bottomRightY": 306,
+      "content": "Figure 12(a). Dot Filling Examples",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 403,
+      "topLeftY": 315,
+      "bottomRightX": 496,
+      "bottomRightY": 325,
+      "content": "INTERNAL DOT PATTERN",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 403,
+      "topLeftY": 326,
+      "bottomRightX": 496,
+      "bottomRightY": 402,
+      "content": "![img-18.jpeg](img-18.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-18.jpeg"
+    },
+    {
+      "topLeftX": 588,
+      "topLeftY": 315,
+      "bottomRightX": 671,
+      "bottomRightY": 325,
+      "content": "DISPLAY DOT PATTERN",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 588,
+      "topLeftY": 326,
+      "bottomRightX": 678,
+      "bottomRightY": 402,
+      "content": "![img-19.jpeg](img-19.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-19.jpeg"
+    },
+    {
+      "topLeftX": 404,
+      "topLeftY": 426,
+      "bottomRightX": 496,
+      "bottomRightY": 502,
+      "content": "![img-20.jpeg](img-20.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-20.jpeg"
+    },
+    {
+      "topLeftX": 588,
+      "topLeftY": 426,
+      "bottomRightX": 678,
+      "bottomRightY": 502,
+      "content": "![img-21.jpeg](img-21.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-21.jpeg"
+    },
+    {
+      "topLeftX": 403,
+      "topLeftY": 523,
+      "bottomRightX": 626,
+      "bottomRightY": 550,
+      "content": "Figure 12(b). Simple 5×7 Matrix [Left] &\nwith \"Filling\" Function [Right]",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 404,
+      "topLeftY": 563,
+      "bottomRightX": 513,
+      "bottomRightY": 708,
+      "content": "![img-22.jpeg](img-22.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-22.jpeg"
+    },
+    {
+      "topLeftX": 600,
+      "topLeftY": 565,
+      "bottomRightX": 706,
+      "bottomRightY": 708,
+      "content": "![img-23.jpeg](img-23.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-23.jpeg"
+    },
+    {
+      "topLeftX": 404,
+      "topLeftY": 733,
+      "bottomRightX": 553,
+      "bottomRightY": 747,
+      "content": "Blinking can be set as follows:",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 404,
+      "topLeftY": 750,
+      "bottomRightX": 554,
+      "bottomRightY": 845,
+      "content": "1. Set the blinking enable bit of the display control register to 1.\n2. Set the blink control bit to 1 for the position of the display memory corresponding to the character for which blinking is desired.",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 571,
+      "topLeftY": 733,
+      "bottomRightX": 661,
+      "bottomRightY": 747,
+      "content": "# \"Filling\" Function",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 571,
+      "topLeftY": 749,
+      "bottomRightX": 723,
+      "bottomRightY": 873,
+      "content": "\"Filling\" is the process\nwhereby dot matrix displays\nlike those in (A) of Fig. 12(a) 's,\nare filled out to the form\nshown in (B) by the display of\nan intermediate dot. As can be\nseen from Fig. 12(b) \"filling\"\nresults in a smoother and\nmore pleasing shape than\ncan be attained with an\nordinary 5 x 7-dot matrix.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 77,
+      "topLeftY": 935,
+      "bottomRightX": 137,
+      "bottomRightY": 948,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 384,
+      "topLeftY": 967,
+      "bottomRightX": 408,
+      "bottomRightY": 978,
+      "content": "4-90",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "index": 8,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 38,
+      "topLeftY": 67,
+      "bottomRightX": 90,
+      "bottomRightY": 79,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 37,
+      "topLeftY": 150,
+      "bottomRightX": 160,
+      "bottomRightY": 177,
+      "content": "# Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 153,
+      "bottomRightX": 324,
+      "bottomRightY": 166,
+      "content": "# General Output Register",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 169,
+      "bottomRightX": 348,
+      "bottomRightY": 239,
+      "content": "This is a 3-bit latched output;\ndata written to DO2 to DO0 is\noutput to the open drain\nterminals DO2 to DO0. The\nreset input sets DO2 to DO0\nlines to \"1\".",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 248,
+      "bottomRightX": 257,
+      "bottomRightY": 260,
+      "content": "# Data Input",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 263,
+      "bottomRightX": 353,
+      "bottomRightY": 321,
+      "content": "MB88303 has two modes for\nwriting data to the control\nregisters and display memory.\nThe modes are switched by the\nADM input.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 330,
+      "bottomRightX": 306,
+      "bottomRightY": 343,
+      "content": "# Direct Address Mode",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 347,
+      "bottomRightX": 349,
+      "bottomRightY": 494,
+      "content": "This mode is enabled when\ninput to the ADM terminal is\nlow. When the input signal to\nthe LDI terminal goes high,\ndata on DA7 to DA0 are\nlatched to the address\nregister. When the LDI\nterminal signal goes low,\n7 bits of data, DA6 to DA0,\nare written to the memory\nspecified by the memory\naddress register. Fig. 10(a) is\nthe timing diagram.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 503,
+      "bottomRightX": 327,
+      "bottomRightY": 515,
+      "content": "# Address Increment Mode",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 522,
+      "bottomRightX": 353,
+      "bottomRightY": 680,
+      "content": "This mode is enabled when\ninput to the ADM terminal is\nhigh. When the input signal\nto the LDI terminal goes high,\nthe data currently latched to\nthe address register are\nincremented. When the LDI\nterminal signal goes low, 7 bits\nof data, DA6 to DA0, are\nwritten to the memory\nspecified by the address\nregister after incrementing.\nFig. 10(b) is the timing\ndiagram.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 204,
+      "topLeftY": 682,
+      "bottomRightX": 235,
+      "bottomRightY": 694,
+      "content": "# Reset",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 698,
+      "bottomRightX": 327,
+      "bottomRightY": 732,
+      "content": "1. The following internal\nregisters are cleared by\nRESET.",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 736,
+      "bottomRightX": 341,
+      "bottomRightY": 761,
+      "content": "Horizontal character size\nregister: HSZ1 = HSZ0 = \"0\"",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 764,
+      "bottomRightX": 322,
+      "bottomRightY": 799,
+      "content": "Horizontal display position\nregister:\nHP5 to HP0 = \"0\"",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 803,
+      "bottomRightX": 354,
+      "bottomRightY": 825,
+      "content": "Vertical character size register:\nVSZ1 = VSZ0 = \"0\"",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 830,
+      "bottomRightX": 309,
+      "bottomRightY": 864,
+      "content": "Vertical display position\nregister:\nVP5 to VP0 = \"0\"",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 869,
+      "bottomRightX": 331,
+      "bottomRightY": 893,
+      "content": "Blinking register: BLINK =\nBLKB = BLK = \"0\"",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 364,
+      "topLeftY": 152,
+      "bottomRightX": 599,
+      "bottomRightY": 166,
+      "content": "Figure 10(b). Address Increment Mode Timing",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 365,
+      "topLeftY": 175,
+      "bottomRightX": 671,
+      "bottomRightY": 357,
+      "content": "![img-16.jpeg](img-16.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-16.jpeg"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 380,
+      "bottomRightX": 532,
+      "bottomRightY": 395,
+      "content": "Figure 11. Display Start Position",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 404,
+      "bottomRightX": 692,
+      "bottomRightY": 602,
+      "content": "![img-17.jpeg](img-17.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-17.jpeg"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 609,
+      "bottomRightX": 671,
+      "bottomRightY": 647,
+      "content": "Note: If T(s) is the period when the oscillating frequency\nis fc (Hz), H will be equal to one period of the horizontal\nsynchronization signal.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 364,
+      "topLeftY": 698,
+      "bottomRightX": 509,
+      "bottomRightY": 745,
+      "content": "2. General output register\n(DO outputs) is set by\nRESET.\nDO2 = DO1 = DO0 = \"1\" (\"H\")",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 364,
+      "topLeftY": 749,
+      "bottomRightX": 509,
+      "bottomRightY": 783,
+      "content": "3. VOW and VOB outputs are\ninitialized by RESET as\nfollows:",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 364,
+      "topLeftY": 786,
+      "bottomRightX": 512,
+      "bottomRightY": 811,
+      "content": "VOW = \"L\", VOB = \"H\" (Blanks\nare displayed on the screen.)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 364,
+      "topLeftY": 815,
+      "bottomRightX": 507,
+      "bottomRightY": 860,
+      "content": "No character is displayed on\nthe TV screen until \"BLK\" bit\n(Bit 4 of Blinking Register) is\nset to \"1\".",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 529,
+      "topLeftY": 698,
+      "bottomRightX": 674,
+      "bottomRightY": 733,
+      "content": "4. Address register and\nDisplay data memory are not\naffected by RESET.",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 38,
+      "topLeftY": 937,
+      "bottomRightX": 99,
+      "bottomRightY": 950,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 348,
+      "topLeftY": 968,
+      "bottomRightX": 372,
+      "bottomRightY": 979,
+      "content": "4-89",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 710,
+      "topLeftY": 662,
+      "bottomRightX": 728,
+      "bottomRightY": 684,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "aside_text"
+    }
+  ]
+}

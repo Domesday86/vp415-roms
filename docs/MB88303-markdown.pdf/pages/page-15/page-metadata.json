@@ -1,0 +1,232 @@
+{
+  "index": 14,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 35,
+      "topLeftY": 69,
+      "bottomRightX": 87,
+      "bottomRightY": 80,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 154,
+      "bottomRightX": 360,
+      "bottomRightY": 169,
+      "content": "Figure 17. RESET Input Timing",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 182,
+      "bottomRightX": 683,
+      "bottomRightY": 332,
+      "content": "![img-31.jpeg](img-31.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-31.jpeg"
+    },
+    {
+      "topLeftX": 199,
+      "topLeftY": 338,
+      "bottomRightX": 233,
+      "bottomRightY": 349,
+      "content": "# Notes:",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 198,
+      "topLeftY": 349,
+      "bottomRightX": 428,
+      "bottomRightY": 540,
+      "content": "1. If \\( t_{\\text{RSTS}} \\) spec. (1μs min.) is not met, the MB88303 cannot be reset.\n2. If \\( t_{\\text{RSTH}} \\) spec. (3μs min.) is not met, then the TV screen will be disturbed. This is caused by the undefined data on the DA line written into internal registers and display memory at LDI's high-to-low transition during RESET = \"L\". This case occurs, for example, when RESET goes high just after LDI goes low, shown at top, right diagram. This unacceptable RESET timing is caused when the device is reset separately from the processor connected to the device. However, when LDI level is fixed high or low during reset (i.e. RESET = \"L\") shown at bottom right diagram, the TV screen is not disturbed.",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 457,
+      "topLeftY": 368,
+      "bottomRightX": 683,
+      "bottomRightY": 432,
+      "content": "![img-32.jpeg](img-32.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-32.jpeg"
+    },
+    {
+      "topLeftX": 456,
+      "topLeftY": 471,
+      "bottomRightX": 683,
+      "bottomRightY": 534,
+      "content": "![img-33.jpeg](img-33.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-33.jpeg"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 575,
+      "bottomRightX": 357,
+      "bottomRightY": 590,
+      "content": "Figure 18. AC Test Conditions",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 597,
+      "bottomRightX": 284,
+      "bottomRightY": 610,
+      "content": "# Input Conditions",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 446,
+      "topLeftY": 597,
+      "bottomRightX": 684,
+      "bottomRightY": 650,
+      "content": "![img-34.jpeg](img-34.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-34.jpeg"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 619,
+      "bottomRightX": 325,
+      "bottomRightY": 632,
+      "content": "# Timing Reference Levels:",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 634,
+      "bottomRightX": 378,
+      "bottomRightY": 671,
+      "content": "3.0V for a logic \"1\" (RESET, LDI)\n2.0V for a logic \"1\" (ADM, DA7-DA0)\n0.8V for a logic \"0\"",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 445,
+      "topLeftY": 691,
+      "bottomRightX": 683,
+      "bottomRightY": 839,
+      "content": "![img-35.jpeg](img-35.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-35.jpeg"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 695,
+      "bottomRightX": 291,
+      "bottomRightY": 709,
+      "content": "# Output Conditions",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 717,
+      "bottomRightX": 322,
+      "bottomRightY": 730,
+      "content": "# Timing Reference Levels:",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 733,
+      "bottomRightX": 291,
+      "bottomRightY": 758,
+      "content": "2.4V for a logic \"1\"\n0.4V for a logic \"0\"",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 767,
+      "bottomRightX": 299,
+      "bottomRightY": 779,
+      "content": "# Output Load Circuit:",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 782,
+      "bottomRightX": 244,
+      "bottomRightY": 794,
+      "content": "RL = 4kΩ",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 794,
+      "bottomRightX": 249,
+      "bottomRightY": 805,
+      "content": "CL = 50pF",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 805,
+      "bottomRightX": 385,
+      "bottomRightY": 817,
+      "content": "(including scope and jig capacitances)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 817,
+      "bottomRightX": 427,
+      "bottomRightY": 840,
+      "content": "*with external 5kΩ pull-up resistor at DO2-DO0 for tDD",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 35,
+      "topLeftY": 939,
+      "bottomRightX": 95,
+      "bottomRightY": 952,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 347,
+      "topLeftY": 971,
+      "bottomRightX": 370,
+      "bottomRightY": 982,
+      "content": "4-95",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 707,
+      "topLeftY": 662,
+      "bottomRightX": 725,
+      "bottomRightY": 683,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

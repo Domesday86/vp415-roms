@@ -1,0 +1,222 @@
+{
+  "index": 6,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 37,
+      "topLeftY": 72,
+      "bottomRightX": 89,
+      "bottomRightY": 84,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 35,
+      "topLeftY": 155,
+      "bottomRightX": 160,
+      "bottomRightY": 182,
+      "content": "# Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 159,
+      "bottomRightX": 293,
+      "bottomRightY": 170,
+      "content": "# Address Structure",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 170,
+      "bottomRightX": 350,
+      "bottomRightY": 305,
+      "content": "All addresses are 8-bit words.\nAddresses from 0 [00000000]\nto 179 [10110011] indicate the\ndisplay memory locations.\nAddresses from 180\n[10110100] to 183 [10110111]\nare used for the control\nregisters. Figure 4 shows the\nmemory map. Selected\naddresses are input through\npins DA7 to DA0. Addresses\n184 above cannot be used.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 327,
+      "bottomRightX": 284,
+      "bottomRightY": 340,
+      "content": "# Display Memory",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 340,
+      "bottomRightX": 351,
+      "bottomRightY": 418,
+      "content": "The display memory is a 180 x\n7-bit RAM. Bits 5 to 0 (CH5-\nCH0) are character code\nstorage; Bit 6 (BC) can be set\nto \"1\" to enable blinking, and\nreset to zero to disable\nblinking.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 426,
+      "bottomRightX": 345,
+      "bottomRightY": 505,
+      "content": "Figure 5 shows the word\nstructure; refer to Character\nCodes table for character\ncodes (see page 5). Selected\ncharacter codes and blinking\ncontrol bit are input through\npins DA6 to DA0.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 520,
+      "bottomRightX": 289,
+      "bottomRightY": 531,
+      "content": "# Control Registers",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 201,
+      "topLeftY": 531,
+      "bottomRightX": 351,
+      "bottomRightY": 555,
+      "content": "# Horizontal Display Position\nRegister [HP5 to HP0]",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 558,
+      "bottomRightX": 352,
+      "bottomRightY": 717,
+      "content": "This register (address 180)\nstores the horizontal position\nof the start of the display on the\nTV screen. The values (000000)\nto (000110) cannot be used for\nthe horizontal display position\nregister. Since the RESET\ninput clears this register, a\nvalue must be set after every\nRESET input. Figure 6 shows\nthe horizontal display position\nregister. For the display\nstarting position control, see\npage 9.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 200,
+      "topLeftY": 745,
+      "bottomRightX": 320,
+      "bottomRightY": 769,
+      "content": "# Vertical Display Position\nRegister [VP5 to VP0]",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 199,
+      "topLeftY": 771,
+      "bottomRightX": 347,
+      "bottomRightY": 897,
+      "content": "This register (address 181)\nstores vertical position of the\nstart of the display on the TV\nscreen. Since the RESET\ninput clears this register, a\nvalue must be set after every\nRESET input. Figure 7 shows\nthe vertical display position\nregister. For the display\nstarting position control see\npage 9.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 145,
+      "bottomRightX": 619,
+      "bottomRightY": 159,
+      "content": "Figure 4. Display Memory & Control Register Map",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 168,
+      "bottomRightX": 697,
+      "bottomRightY": 332,
+      "content": "![img-9.jpeg](img-9.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-9.jpeg"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 342,
+      "bottomRightX": 567,
+      "bottomRightY": 356,
+      "content": "Figure 5. Display Memory Word Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 369,
+      "topLeftY": 367,
+      "bottomRightX": 707,
+      "bottomRightY": 553,
+      "content": "![img-10.jpeg](img-10.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-10.jpeg"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 564,
+      "bottomRightX": 636,
+      "bottomRightY": 578,
+      "content": "Figure 6. Horizontal Display Position Register Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 589,
+      "bottomRightX": 627,
+      "bottomRightY": 715,
+      "content": "![img-11.jpeg](img-11.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-11.jpeg"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 734,
+      "bottomRightX": 622,
+      "bottomRightY": 749,
+      "content": "Figure 7. Vertical Display Position Register Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 760,
+      "bottomRightX": 613,
+      "bottomRightY": 882,
+      "content": "![img-12.jpeg](img-12.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-12.jpeg"
+    },
+    {
+      "topLeftX": 37,
+      "topLeftY": 944,
+      "bottomRightX": 98,
+      "bottomRightY": 956,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 350,
+      "topLeftY": 975,
+      "bottomRightX": 373,
+      "bottomRightY": 986,
+      "content": "4-87",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 710,
+      "topLeftY": 667,
+      "bottomRightX": 728,
+      "bottomRightY": 691,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "aside_text"
+    }
+  ]
+}

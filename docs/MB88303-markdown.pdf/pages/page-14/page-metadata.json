@@ -1,0 +1,104 @@
+{
+  "index": 13,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 78,
+      "topLeftY": 74,
+      "bottomRightX": 130,
+      "bottomRightY": 86,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 77,
+      "topLeftY": 149,
+      "bottomRightX": 192,
+      "bottomRightY": 161,
+      "content": "# AC Characteristics",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 77,
+      "topLeftY": 161,
+      "bottomRightX": 215,
+      "bottomRightY": 197,
+      "content": "(Recommended operating conditions unless otherwise noted.)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 239,
+      "topLeftY": 159,
+      "bottomRightX": 719,
+      "bottomRightY": 368,
+      "content": "|  Parameter | Symbol | Pin | Value |   | Unit | Condition  |\n| --- | --- | --- | --- | --- | --- | --- |\n|   |   |   |  Min. | Max.  |   |   |\n|  LDI Pulse Width | t_{WLDI} | LDI | 5 |  | μs | Fig. 15, Fig. 18  |\n|  LDI Rise/Fall Time | t_{FLDI} t_{FLDI} | LDI |  | 1 | μs | Fig. 15, Fig. 18  |\n|  ADM Setup Time | t_{AS} | ADM | 0.5 |  | μs | Fig. 15, Fig. 18  |\n|  ADM Hold Time | t_{AH} | ADM | 2 |  | μs | Fig. 15, Fig. 18  |\n|  Address/Data Setup Time | t_{S} | DA0 to DA7 | 0.5 |  | μs | Fig. 15, Fig. 18  |\n|  Address/Data Hold Time | t_{H} | DA0 to DA7 | 2 |  | μs | Fig. 15, Fig. 18  |\n|  DO Output Delay Time | t_{DD} | DO0 to DO2 |  | 0.6 | μs | Fig. 16, Fig. 18  |\n|  RESET Pulse Width | t_{RST} | RESET | 4 |  | μs | Fig. 17, Fig. 18  |\n|  RESET Setup Time | t_{RSTS} | RESET | 1 |  | μs | Fig. 17, Fig. 18  |\n|  RESET Hold Time | t_{RSTH} | RESET | 3 |  | μs | Fig. 17, Fig. 18  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 241,
+      "topLeftY": 393,
+      "bottomRightX": 434,
+      "bottomRightY": 408,
+      "content": "Figure 15. Address/Data Input Timing",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 241,
+      "topLeftY": 413,
+      "bottomRightX": 703,
+      "bottomRightY": 624,
+      "content": "![img-29.jpeg](img-29.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-29.jpeg"
+    },
+    {
+      "topLeftX": 241,
+      "topLeftY": 647,
+      "bottomRightX": 391,
+      "bottomRightY": 662,
+      "content": "Figure 16. DO Output Timing",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 241,
+      "topLeftY": 668,
+      "bottomRightX": 708,
+      "bottomRightY": 782,
+      "content": "![img-30.jpeg](img-30.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-30.jpeg"
+    },
+    {
+      "topLeftX": 78,
+      "topLeftY": 946,
+      "bottomRightX": 139,
+      "bottomRightY": 958,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 391,
+      "topLeftY": 977,
+      "bottomRightX": 415,
+      "bottomRightY": 988,
+      "content": "4-94",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

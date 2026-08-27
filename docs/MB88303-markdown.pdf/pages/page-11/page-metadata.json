@@ -1,0 +1,249 @@
+{
+  "index": 10,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 43,
+      "topLeftY": 77,
+      "bottomRightX": 95,
+      "bottomRightY": 88,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 40,
+      "topLeftY": 158,
+      "bottomRightX": 164,
+      "bottomRightY": 186,
+      "content": "# Functional Description\n(Continued)",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 163,
+      "bottomRightX": 318,
+      "bottomRightY": 176,
+      "content": "# Display Output Timing",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 179,
+      "bottomRightX": 354,
+      "bottomRightY": 279,
+      "content": "Fig 13. shows the timing for\nVOW and VOB for the\noverlayed portion of a display\nconsisting of the letter \"A\", a\n\"blank\" (character code 0F),\n\"background\" (character\ncode 2E), and the letter \"B\",\nwith the display blinking and\nbackground blanking set to 1.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 282,
+      "bottomRightX": 352,
+      "bottomRightY": 328,
+      "content": "Note that the display of the\nbackground changes during\nthe \"BLANK\" character when\nthe VOB line goes high.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 333,
+      "bottomRightX": 342,
+      "bottomRightY": 356,
+      "content": "# Difference Between Blanks\nand Background",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 358,
+      "bottomRightX": 352,
+      "bottomRightY": 394,
+      "content": "Note: In Fig. 14(b) which\nshows a screen of characters\noverlaying the picture of a",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 368,
+      "topLeftY": 164,
+      "bottomRightX": 512,
+      "bottomRightY": 223,
+      "content": "woman, a blank (character\ncode 0F) displays differently\nfrom background (character\ncode 2E), depending on\nwhether VOB is used or not.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 368,
+      "topLeftY": 232,
+      "bottomRightX": 506,
+      "bottomRightY": 277,
+      "content": "In Fig. 14(b) both pictures\ndisplay the letter \"A\", a\n\"blank\", a \"background\", the\nletter \"B\", and a \"blank\".",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 368,
+      "topLeftY": 285,
+      "bottomRightX": 516,
+      "bottomRightY": 388,
+      "content": "In the right picture of Fig.\n14(b), where VOB is on, the\ncharacter displays are\nbounded by a black frame, so\nthat the spaces between\ncharacters display as black.\nWhere a blank is displayed, a\n5 x 7-dot portion of the TV\npicture is visible. The",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 533,
+      "topLeftY": 163,
+      "bottomRightX": 646,
+      "bottomRightY": 187,
+      "content": "background display is\nblack.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 532,
+      "topLeftY": 198,
+      "bottomRightX": 681,
+      "bottomRightY": 344,
+      "content": "In the left picture of Fig.\n14(b), were VOB is off, the TV\npicture is visible everywhere\non the screen except where\nthe characters display in\nwhite. Here, blanks and\nbackground are displayed\nidentically. Note that the\nbroken lines have been drawn\nin to indicate where the\nframes would be displayed if\nthey were displayed on the\nscreen.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 206,
+      "topLeftY": 408,
+      "bottomRightX": 376,
+      "bottomRightY": 422,
+      "content": "Figure 13. Display Output Timing",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 206,
+      "topLeftY": 430,
+      "bottomRightX": 648,
+      "bottomRightY": 627,
+      "content": "![img-24.jpeg](img-24.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-24.jpeg"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 649,
+      "bottomRightX": 318,
+      "bottomRightY": 675,
+      "content": "Fig 14(a). Display of\nTV Picture",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 371,
+      "topLeftY": 649,
+      "bottomRightX": 604,
+      "bottomRightY": 663,
+      "content": "Fig 14(b). Display of Character on TV Picture",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 371,
+      "topLeftY": 670,
+      "bottomRightX": 415,
+      "bottomRightY": 680,
+      "content": "• VOB OFF",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 536,
+      "topLeftY": 670,
+      "bottomRightX": 578,
+      "bottomRightY": 680,
+      "content": "• VOB ON",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 371,
+      "topLeftY": 687,
+      "bottomRightX": 525,
+      "bottomRightY": 831,
+      "content": "![img-25.jpeg](img-25.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-25.jpeg"
+    },
+    {
+      "topLeftX": 536,
+      "topLeftY": 687,
+      "bottomRightX": 689,
+      "bottomRightY": 831,
+      "content": "![img-26.jpeg](img-26.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-26.jpeg"
+    },
+    {
+      "topLeftX": 206,
+      "topLeftY": 706,
+      "bottomRightX": 360,
+      "bottomRightY": 831,
+      "content": "![img-27.jpeg](img-27.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-27.jpeg"
+    },
+    {
+      "topLeftX": 206,
+      "topLeftY": 842,
+      "bottomRightX": 241,
+      "bottomRightY": 853,
+      "content": "# Notes:",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 853,
+      "bottomRightX": 652,
+      "bottomRightY": 899,
+      "content": "1. For HSYNC and VSYNC input signals, both cycle and rise/fall times must be constant.\n2. Character output during the blanking period of TV should be inhibited. If not, character shapes may change. So, blanks should be written for memory addresses which cannot be displayed on the screen.",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 41,
+      "topLeftY": 947,
+      "bottomRightX": 102,
+      "bottomRightY": 959,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 356,
+      "topLeftY": 979,
+      "bottomRightX": 379,
+      "bottomRightY": 990,
+      "content": "4-91",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 714,
+      "topLeftY": 669,
+      "bottomRightX": 731,
+      "bottomRightY": 692,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

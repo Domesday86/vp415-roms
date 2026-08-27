@@ -1,0 +1,94 @@
+{
+  "index": 12,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 40,
+      "topLeftY": 77,
+      "bottomRightX": 92,
+      "bottomRightY": 88,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 40,
+      "topLeftY": 150,
+      "bottomRightX": 190,
+      "bottomRightY": 174,
+      "content": "Recommended Operating Conditions",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 161,
+      "bottomRightX": 681,
+      "bottomRightY": 365,
+      "content": "|  Parameter | Symbol | Pin | Value |   |   | Unit  |\n| --- | --- | --- | --- | --- | --- | --- |\n|   |   |   |  Min. | Typ. | Max.  |   |\n|  Supply Voltage | V_{CC} | V_{CC} | 4.5 | 5.0 | 5.5 | V  |\n|   |  V_{SS} | V_{SS} | — | 0 |   |   |\n|  Input High Voltage | V_{IH} | DA7-DA0, ADM | 2.0 |  | V_{CC} | V  |\n|   |  V_{IHS} | RESET, LDI VSYNC, HSYNC | 3.0 |  | V_{CC} | V  |\n|  Input Low Voltage | V_{IL} | DA7-DA0, ADM RESET, LDI VSYNC, HSYNC, EX | -0.3 |  | 0.8 | V  |\n|  Operating Temperature | T_{A} |  | -30 |  | +70 | °C  |\n|  Operating Clock Frequency | f_{c} | EX, X |  |  | 6.7 | MHz  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 40,
+      "topLeftY": 393,
+      "bottomRightX": 154,
+      "bottomRightY": 405,
+      "content": "DC Characteristics",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 40,
+      "topLeftY": 406,
+      "bottomRightX": 180,
+      "bottomRightY": 440,
+      "content": "(Recommended operating conditions unless otherwise noted.)",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 202,
+      "topLeftY": 404,
+      "bottomRightX": 681,
+      "bottomRightY": 722,
+      "content": "|  Parameter | Symbol | Pin | Value |   |   | Unit | Condition  |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n|   |   |   |  Min. | Typ. | Max.  |   |   |\n|  Output High Voltage | V_{OH} | VOW, VOB | 2.4 | — | — | V | V_{CC} = 4.5V, I_{OH} = -200μA  |\n|   |   |  DO2-DO0 | Open Drain  |   |   |   |   |\n|  Output Low Voltage | V_{OL} | VOW, VOB | — | — | 0.4 | V | V_{CC} = 4.5V, I_{OL} = 1.8mA V_{CC} = 4.5V, I_{OL} = 1.8mA, with 5kΩ external pull-up resistor  |\n|   |   |  DO2-DO0 | — | — | 0.4  |   |   |\n|  Output Leakage Current | I_{leak} | DO2-DO0 | — | — | 50 | μA | V_{CC} = 5.5V, V_{OH} = 13.2V, at OFF state with with 5KΩ external pull-up resistor  |\n|  Input Leakage Current | I_{IL} | RESET, LDI, ADM, VSYNC, HSYNC, DA7-DA0 | — | — | -60 | μA | V_{CC} = 5.5V, V_{IL} = 0.4V  |\n|  Supply Current | I_{CC} | V_{CC} | — | 80 | 120 | mA | V_{CC} = 5.5V, All outputs open, f_{c} = 6.7MHz, reset state  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 40,
+      "topLeftY": 947,
+      "bottomRightX": 100,
+      "bottomRightY": 959,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 351,
+      "topLeftY": 980,
+      "bottomRightX": 375,
+      "bottomRightY": 991,
+      "content": "4-93",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 713,
+      "topLeftY": 669,
+      "bottomRightX": 729,
+      "bottomRightY": 691,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

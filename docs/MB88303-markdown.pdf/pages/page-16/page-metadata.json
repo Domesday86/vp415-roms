@@ -1,0 +1,85 @@
+{
+  "index": 15,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 85,
+      "topLeftY": 65,
+      "bottomRightX": 137,
+      "bottomRightY": 77,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 246,
+      "topLeftY": 139,
+      "bottomRightX": 458,
+      "bottomRightY": 153,
+      "content": "Figure 19. RC—Network Oscillator Circuit",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 246,
+      "topLeftY": 162,
+      "bottomRightX": 397,
+      "bottomRightY": 310,
+      "content": "![img-36.jpeg](img-36.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-36.jpeg"
+    },
+    {
+      "topLeftX": 479,
+      "topLeftY": 160,
+      "bottomRightX": 647,
+      "bottomRightY": 215,
+      "content": "Note: The clock frequency (fc) has wide variation from device to device. The clock frequency also considerably depends on the ambient temperature and supply voltage.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 507,
+      "topLeftY": 216,
+      "bottomRightX": 647,
+      "bottomRightY": 259,
+      "content": "Therefore, to limit the clock frequency within the specified range, it is required to adjust it with the external resistor in advance.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 85,
+      "topLeftY": 343,
+      "bottomRightX": 236,
+      "bottomRightY": 358,
+      "content": "I/O Circuit Configuration",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 246,
+      "topLeftY": 355,
+      "bottomRightX": 725,
+      "bottomRightY": 633,
+      "content": "|  Pin | Type | Circuit Diagram | Characteristics  |\n| --- | --- | --- | --- |\n|  RESET LDI ADM DA0-DA7 HSYNC VSYNC | Input | APPROX. 500KΩ | **Pull Up Resistor:** I_{IL} ≤ 60μA at V_{CC} = 5.5V, V_{IL} = 0.4V  |\n|  DO0-DO2 | Output |  | **High-Voltage Open Drain:** I_{IL} ≤ 0.4V at V_{CC} = 4.5V, V_{OL} = 1.8mA,* I_{leak} ≤ 50μA at V_{CC} = 5.5V, V_{OH} = 13.2V, OFF state,* *with external 5kΩ pull up resistor  |\n|  VOW VOB | Output |  | **Pull Up Resistor:** V_{OH} ≥ 2.4V at V_{CC} = 4.5V, I_{OH} = -200μA V_{OL} ≤ 0.4V at V_{CC} = 4.5V, I_{OL} = 1.8mA  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 399,
+      "topLeftY": 968,
+      "bottomRightX": 423,
+      "bottomRightY": 980,
+      "content": "4-96",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

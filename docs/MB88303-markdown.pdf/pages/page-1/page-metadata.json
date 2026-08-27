@@ -1,0 +1,165 @@
+{
+  "index": 0,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 132,
+      "topLeftY": 94,
+      "bottomRightX": 343,
+      "bottomRightY": 115,
+      "content": "Advanced Products",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 548,
+      "topLeftY": 90,
+      "bottomRightX": 703,
+      "bottomRightY": 115,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 99,
+      "topLeftY": 142,
+      "bottomRightX": 241,
+      "bottomRightY": 161,
+      "content": "# ■ MB88303",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 130,
+      "topLeftY": 162,
+      "bottomRightX": 517,
+      "bottomRightY": 186,
+      "content": "NMOS Television Display Controller (TVDC)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 642,
+      "topLeftY": 136,
+      "bottomRightX": 703,
+      "bottomRightY": 146,
+      "content": "October 1986",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 642,
+      "topLeftY": 147,
+      "bottomRightX": 688,
+      "bottomRightY": 157,
+      "content": "Edition 2.0",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 132,
+      "topLeftY": 368,
+      "bottomRightX": 205,
+      "bottomRightY": 381,
+      "content": "# Description",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 221,
+      "topLeftY": 379,
+      "bottomRightX": 535,
+      "bottomRightY": 426,
+      "content": "The Fujitsu MB88303 NMOS Television Display Controller (TVDC) is an interface LSI that displays 180 alphanumeric characters (20 characters x 9 lines) in white on a TV screen. The characters overlay the picture on the TV screen.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 221,
+      "topLeftY": 436,
+      "bottomRightX": 527,
+      "bottomRightY": 482,
+      "content": "While designed to operate in conjunction with the Fujitsu MB8840/8850 and MB88400/88500 single-chip 4-bit microcomputers, the MB88303 TVDC can also be interfaced to a wide range of 4- and 8-bit microprocessors.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 221,
+      "topLeftY": 492,
+      "bottomRightX": 527,
+      "bottomRightY": 525,
+      "content": "The MB88303 allows simple interface to almost any TV display (raster scan CRT with horizontal and vertical scanning) regardless of interlace or non-interlace scan.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 221,
+      "topLeftY": 534,
+      "bottomRightX": 522,
+      "bottomRightY": 581,
+      "content": "The MB88303 is fabricated with N-channel silicon-gate E/D MOS process, and packaged in a 22-pin plastic DIP. Also, it is powered by a single +5V power supply, and operates over a temperature range of -30°C to +70°C.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 132,
+      "topLeftY": 604,
+      "bottomRightX": 187,
+      "bottomRightY": 617,
+      "content": "# Features",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 221,
+      "topLeftY": 616,
+      "bottomRightX": 373,
+      "bottomRightY": 808,
+      "content": "- Character display controller available for NTSC, PAL and SECAN TV sets\n- 20 character x 9-line screen format (Max. 180 characters/screen)\n- 5x7-dot matrix character format (1-dot horizontal and 2-dot vertical spacings)\n- 64-character set\n- Programmable character size: 4 widths and 4 heights\n- Programmable display start position: 57 horizontal and 64 vertical positions\n- Programmable character blinking control",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 384,
+      "topLeftY": 616,
+      "bottomRightX": 541,
+      "bottomRightY": 830,
+      "content": "- Automatic inter-dot filling function for improved smoothness\n- Black-level background output for improved clarity\n- 180 x 7-bit display data RAM\n- 448 x 5-bit character generator ROM\n- Four control registers\n- 3-bit general-purpose open-drain latched output\n- On-chip clock generator for external RC-network\n- Single +5V power supply\n- Wide operating temperature range: -30°C to +70°C\n- N-channel silicon-gate E/D MOS process\n- 22-pin plastic DIP (Suffix -P)",
+      "confidenceScores": null,
+      "type": "list"
+    },
+    {
+      "topLeftX": 548,
+      "topLeftY": 380,
+      "bottomRightX": 703,
+      "bottomRightY": 922,
+      "content": "![img-0.jpeg](img-0.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-0.jpeg"
+    },
+    {
+      "topLeftX": 370,
+      "topLeftY": 957,
+      "bottomRightX": 392,
+      "bottomRightY": 968,
+      "content": "4-81",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 715,
+      "topLeftY": 659,
+      "bottomRightX": 732,
+      "bottomRightY": 680,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "aside_text"
+    }
+  ]
+}

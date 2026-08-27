@@ -1,0 +1,131 @@
+{
+  "index": 16,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 38,
+      "topLeftY": 73,
+      "bottomRightX": 90,
+      "bottomRightY": 85,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 35,
+      "topLeftY": 145,
+      "bottomRightX": 156,
+      "bottomRightY": 158,
+      "content": "# Package Dimensions",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 36,
+      "topLeftY": 158,
+      "bottomRightX": 139,
+      "bottomRightY": 168,
+      "content": "Dimensions in inches",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 515,
+      "topLeftY": 165,
+      "bottomRightX": 657,
+      "bottomRightY": 310,
+      "content": "![img-37.jpeg](img-37.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-37.jpeg"
+    },
+    {
+      "topLeftX": 199,
+      "topLeftY": 187,
+      "bottomRightX": 496,
+      "bottomRightY": 301,
+      "content": "![img-38.jpeg](img-38.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-38.jpeg"
+    },
+    {
+      "topLeftX": 36,
+      "topLeftY": 168,
+      "bottomRightX": 97,
+      "bottomRightY": 181,
+      "content": "(millimeters)",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 199,
+      "topLeftY": 147,
+      "bottomRightX": 295,
+      "bottomRightY": 159,
+      "content": "# 22-Lead Plastic",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 199,
+      "topLeftY": 159,
+      "bottomRightX": 327,
+      "bottomRightY": 170,
+      "content": "Dual In-Line Package",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 199,
+      "topLeftY": 170,
+      "bottomRightX": 282,
+      "bottomRightY": 182,
+      "content": "DIP-22P-M02",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 318,
+      "bottomRightX": 545,
+      "bottomRightY": 442,
+      "content": "![img-39.jpeg](img-39.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-39.jpeg"
+    },
+    {
+      "topLeftX": 37,
+      "topLeftY": 934,
+      "bottomRightX": 94,
+      "bottomRightY": 946,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 353,
+      "topLeftY": 971,
+      "bottomRightX": 377,
+      "bottomRightY": 982,
+      "content": "4-97",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 707,
+      "topLeftY": 662,
+      "bottomRightX": 725,
+      "bottomRightY": 684,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "footer"
+    }
+  ]
+}

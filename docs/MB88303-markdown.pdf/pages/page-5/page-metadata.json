@@ -1,0 +1,195 @@
+{
+  "index": 4,
+  "dimensions": {
+    "dpi": 113,
+    "height": 1019,
+    "width": 763
+  },
+  "confidenceScores": null,
+  "blocks": [
+    {
+      "topLeftX": 41,
+      "topLeftY": 59,
+      "bottomRightX": 93,
+      "bottomRightY": 70,
+      "content": "MB88303",
+      "confidenceScores": null,
+      "type": "header"
+    },
+    {
+      "topLeftX": 41,
+      "topLeftY": 133,
+      "bottomRightX": 180,
+      "bottomRightY": 148,
+      "content": "# Functional Description",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 204,
+      "topLeftY": 146,
+      "bottomRightX": 351,
+      "bottomRightY": 168,
+      "content": "# Screen Format and Character Format",
+      "confidenceScores": null,
+      "type": "title"
+    },
+    {
+      "topLeftX": 204,
+      "topLeftY": 169,
+      "bottomRightX": 351,
+      "bottomRightY": 238,
+      "content": "The MB88303 TVDC supports the display of 9 lines of 20 characters per line, or a total of up to 180 alphanumeric characters, as shown in Figure 1.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 204,
+      "topLeftY": 246,
+      "bottomRightX": 355,
+      "bottomRightY": 270,
+      "content": "The characters are formed in a 5 x 7-dot matrix, with a 1-dot",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 146,
+      "bottomRightX": 518,
+      "bottomRightY": 214,
+      "content": "space between characters and a 2-dot space between lines. Screen Format also shows the relative on-screen size of the displayed elements. Figure 2 shows the character format.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 368,
+      "topLeftY": 235,
+      "bottomRightX": 516,
+      "bottomRightY": 270,
+      "content": "Character Patterns and Codes\nThe MB88303 has a built-in 5 x 7-dot matrix character",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 532,
+      "topLeftY": 146,
+      "bottomRightX": 685,
+      "bottomRightY": 248,
+      "content": "generator ROM. Fig. 6(a) shows internal character patterns in the character generator, which are automatically modified by \"filling\" function and displayed on the screen as shown in Figure 3(b). The character patterns are encoded as shown in Table 1.",
+      "confidenceScores": null,
+      "type": "text"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 293,
+      "bottomRightX": 331,
+      "bottomRightY": 306,
+      "content": "Figure 1. Screen Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 247,
+      "topLeftY": 313,
+      "bottomRightX": 580,
+      "bottomRightY": 505,
+      "content": "![img-4.jpeg](img-4.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-4.jpeg"
+    },
+    {
+      "topLeftX": 600,
+      "topLeftY": 388,
+      "bottomRightX": 688,
+      "bottomRightY": 475,
+      "content": "![img-5.jpeg](img-5.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-5.jpeg"
+    },
+    {
+      "topLeftX": 247,
+      "topLeftY": 497,
+      "bottomRightX": 476,
+      "bottomRightY": 517,
+      "content": "NOTE:\nNUMBERS 0 to 179 INDICATE DISPLAY MEMORY ADDRESSES.",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 205,
+      "topLeftY": 543,
+      "bottomRightX": 344,
+      "bottomRightY": 557,
+      "content": "Figure 2. Character Format",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 208,
+      "topLeftY": 567,
+      "bottomRightX": 350,
+      "bottomRightY": 732,
+      "content": "![img-6.jpeg](img-6.jpeg)",
+      "confidenceScores": null,
+      "type": "image",
+      "imageId": "img-6.jpeg"
+    },
+    {
+      "topLeftX": 203,
+      "topLeftY": 761,
+      "bottomRightX": 345,
+      "bottomRightY": 819,
+      "content": "Note:\nRefer to Page 10 for an explanation of the difference between blanks and background.",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 370,
+      "topLeftY": 543,
+      "bottomRightX": 499,
+      "bottomRightY": 555,
+      "content": "Table 1. Character Codes",
+      "confidenceScores": null,
+      "type": "caption"
+    },
+    {
+      "topLeftX": 367,
+      "topLeftY": 568,
+      "bottomRightX": 685,
+      "bottomRightY": 912,
+      "content": "|  CH5-4  |   |   |   |   |\n| --- | --- | --- | --- | --- |\n|  CH3-0 | 0 | 1 | 2 | 3  |\n|  0 | A | N | 0 | !  |\n|  1 | B | O | 1 | ;  |\n|  2 | C | P | 2 | --  |\n|  3 | D | Q | 3 | --  |\n|  4 | E | R | 4 | +  |\n|  5 | F | S | 5 | -  |\n|  6 | G | T | 6 | *  |\n|  7 | H | U | 7 | /  |\n|  8 | I | V | 8 | =  |\n|  9 | J | W | 9 | &  |\n|  A | K | X | ? | ※ (kanji)  |\n|  B | L | Y | ! | 月 (kanji)  |\n|  C | M | Z | (apostrophe) | B (kanji)  |\n|  D | (raised dot) | : | (period) | (comma)  |\n|  E | □ | ■ | □ (background) | ~  |\n|  F | (blank) | [ | ] | (Telephone)  |",
+      "confidenceScores": null,
+      "type": "table",
+      "tableId": null
+    },
+    {
+      "topLeftX": 39,
+      "topLeftY": 929,
+      "bottomRightX": 100,
+      "bottomRightY": 941,
+      "content": "FUJITSU",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 356,
+      "topLeftY": 961,
+      "bottomRightX": 380,
+      "bottomRightY": 973,
+      "content": "4-85",
+      "confidenceScores": null,
+      "type": "footer"
+    },
+    {
+      "topLeftX": 713,
+      "topLeftY": 652,
+      "bottomRightX": 729,
+      "bottomRightY": 676,
+      "content": "4",
+      "confidenceScores": null,
+      "type": "aside_text"
+    }
+  ]
+}

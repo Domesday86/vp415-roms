@@ -167,7 +167,10 @@ wrote disasm/vp415-module-s-ic7202-control-6804.9-rev1.8-0x6728.lst
 listing; `-e ADDR` adds an entry point the vectors do not reach.
 
 What module S's tables mean is in
-[`player-control-command-set.md`](player-control-command-set.md).
+[`module-s-control.md`](module-s-control.md) — kernel, tasks, ports and DIP
+switches — and
+[`player-control-command-set.md`](player-control-command-set.md) — the command
+language they interpret.
 
 ### `vp-fontdump` — find and extract character sets
 
@@ -250,11 +253,13 @@ Any of them is one line in `flake.nix` if a use turns up.
 4. Start Ghidra on the module R drive ROM. It is 16 KB, self-contained, and its
    diagnostic error codes and OSD strings give you named anchors to work back
    from.
-5. Module W and the command language are done:
+5. Module W and module S are done:
    [`module-w-command-interface.md`](module-w-command-interface.md) covers the
-   SCSI target interface, and
+   SCSI target interface,
    [`player-control-command-set.md`](player-control-command-set.md) covers the
-   ASCII player-control language in module S. The open end is now **module R**,
+   ASCII player-control language, and
+   [`module-s-control.md`](module-s-control.md) covers the module that
+   interprets it. The open end is now **module R**,
    the drive processor: module S queues three-byte register writes to it over
    the S-bus and this collection does not yet say what any of those registers
    do. `vp-mcs51` decodes that image too.

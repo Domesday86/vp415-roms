@@ -56,28 +56,65 @@ the VP410. Table addresses: dispatcher `$5B14`/table `$5E8D` on the VP415,
 
 Module S runs a small cooperative kernel — eight tasks, each with its own
 8051 register bank, resumed through a scheduler at `$0030` (see §3). Two of
-them own serial hardware, and **both carry the same command language**.
+them own serial hardware, and **both carry the same command language**. The
+module as a whole is documented separately in
+[`module-s-control.md`](module-s-control.md).
 
-| | Port A | Port B |
+| | Internal port | External port |
 | --- | --- | --- |
-| Hardware | NEC D8041AHC UPI at external addresses `$F400` (data) and `$F600` (status/command) | The 8051's own UART, `SCON`/`SBUF` |
+| Hardware | NEC D8041AHC UPI (IC7211) at `$F400` (data) and `$F600` (command/status) | the 8051's own UART, `SCON`/`SBUF`, through RS232-C drivers |
+| Goes to | the CPU board — module W — at 5 V, half duplex | the rear-panel `RS232C` socket |
 | Owned by | task 3, initialised at `$D0FF` | task 0, initialised at `$CD57` |
 | Also carries | RC5 remote-control codes | — |
-| Baud rate | fixed by the 8041's own init (`$81` then `$37`, `$D127`) | selected from bits 3–2 of the hardware latch `$FC00`: `TH1` = `$FD`/`$FA`/`$F4`/`$E8` = 9600/4800/2400/1200 (`$BEB2`–`$BEF8`) |
-| Enable flag | `$0DC7` bit 7, mode bits 5–4 must read `10` (`$8A32`, `$C361`) | `$0DC8` bit 7 |
+| Baud rate | fixed by the 8041's own init (`$81` then `$37`, `$D127`) | selected from bits 3–2 of the rear-panel DIP switches at `$FC00`: `TH1` = `$FD`/`$FA`/`$F4`/`$E8` = 9600/4800/2400/1200 (`$BEB2`–`$BEF8`), re-read every 142 ms |
+| Line buffer | `$0DD3`, index `$0DBE` | `$0BC3`, index `$0DBF` |
+| Control byte | `$0DC7` | `$0DC8` |
 
-Replies are transmitted on **both** ports whenever their enable flags are set
-(`$8A32` for port A, `$8ABD` for port B), so a host on either port sees the
-same answers. `$09BE`, which the `)` command sets, is the **transmission
-delay** flag, not a port enable: when it is 1, task 0 paces its output
-(`$CDEF`, `$CE8B`).
+Earlier drafts of this document called these "port A" and "port B". Those are
+not names from the manual; internal and external is what they physically are.
+
+### 1.1 Only one port is in charge at a time
+
+The control bytes have the same layout: bit 7 = enabled, bits 5–4 = mode, where
+`10` is F-code mode. A port must have **bit 7 set and bit 5 set** before a
+completed line reaches the interpreter (`$C361` for the internal port, `$8BE3`
+for the external one), and replies go to whichever ports have bit 7 set
+(`$8A32`, `$8ABD`).
+
+After **every** received character, on both ports and regardless of the enable
+bits, the firmware inspects the tail of that port's line buffer (`$C2BC`,
+`$8963`):
+
+| Tail of the buffer | Effect | Reply |
+| --- | --- | --- |
+| `SP` `SP` | none | `A` |
+| `SP` `SP` `F` | claim this port in F-code mode — set its control byte to `$A0` and **clear bit 7 of the other port** | `A` |
+| `SP` `SP` `H` | external port only: `$0DC8` = `$90`, mode `01`, and clear `$0DC7` bit 7 | `A` |
+| `SP` `SP` anything else | reset the line buffer | `N` |
+
+Claiming is therefore **exclusive**: a host never sees replies meant for the
+other port. At the end of start-up `$0DC7` = `$00` and `$0DC8` = `$A0`
+(`$D140`), so a player that has just been switched on answers the **rear-panel
+RS232 socket** and drops completed lines from module W.
+
+This is the far end of a handshake already visible in module W: its
+`PROC_0060` sends `SP`, `SP`, reads a byte, sends `F`, reads a byte — at
+start-up and after every serial timeout
+([`module-w-command-interface.md`](module-w-command-interface.md) §9.4). It is
+not just flushing a half-typed argument; it is taking ownership of the player.
+While an AIV machine is running, the rear socket is deaf, and a host there can
+take ownership back by sending the same three characters.
+
+`$09BE`, which the `)` command sets, is the **transmission delay** flag, not a
+port enable: when it is 1, task 0 asks for a 4-tick timer between characters —
+about 17.8 ms each — instead of transmitting back to back (`$CDEF`, `$CE8B`).
 
 The 8041 tags everything it hands over. Reading `$F400` gives a type byte
 first: bits 5–4 = `01` means an RC5 code follows in two more bytes, `10` means
 one received character follows (`$C477`). Transmitting is `$A1` to `$F600`
-then the byte to `$F400` (`$88F4`); for a short burst the firmware instead
-writes `$A0 | count` and then the bytes (`$8A84`). This is exactly the
-protocol module W's 8041 primitives speak, which is why module W's
+then the byte to `$F400` (`$88F4`); for a reply shorter than three characters
+the firmware instead writes `$A0 | count` and then the bytes (`$8A84`). This is
+exactly the protocol module W's 8041 primitives speak, which is why module W's
 "receive one byte" routine tests for `$A1` and masks the following byte to
 seven bits.
 
@@ -86,8 +123,11 @@ seven bits.
 **Command:** printable characters terminated by `CR` (`$0D`). Nothing else —
 no addressing, no checksum, no line editing, and no echo.
 
-- The line buffer is 12 bytes (`$0DD3`, index `$0DBE`). Reaching index 13
-  without a `CR` **discards the whole line silently** (`$C40C`).
+- The line buffer is 12 bytes on each port (`$0DD3`/`$0DBE` internal,
+  `$0BC3`/`$0DBF` external). On the internal port, reaching index 13 without a
+  `CR` **discards the whole line silently** (`$C40C`); on the external port the
+  overflow instead produces a malformed message that the dispatcher rejects on
+  its length check (`$8C92`).
 - The `CR` is stripped before the command is passed on (`$C38F`), so the
   interpreter sees at most 11 characters.
 - Bit 7 of the command character is ignored: the dispatcher masks with `$7F`
@@ -102,19 +142,26 @@ commands (§9).
 ## 3. How a command reaches the interpreter
 
 ```
-8041 ($F400) ──► task 3 $C477   one character at a time, tagged
-                     │          appended to the line buffer $0DD3
-                     ▼
-              task 3 $C361      CR seen: strip it, build a message
-                     │          msg[0]=5 (to the command task)
-                     │          msg[1]=3 (from task 3)
-                     │          msg[2]=length, msg[3..]=the characters
-                     ▼
+8041 ($F400) ──► task 3 $C477 ──► line buffer $0DD3 ──► task 3 $C361
+                                                            │
+UART (SBUF) ──► task 0 $CE05 ──► ring $09C1                 │
+                     │                │                     │
+                 opcode $3E ──► task 3 $8B17 ──► $0BC3 ──► task 3 $8BE3
+                                                            │
+                     CR seen, and this port is enabled and in F-code mode:
+                     strip the CR and build a message
+                       msg[0]=5 (to the command task)
+                       msg[1]=3 (from task 3 — both ports say this)
+                       msg[2]=length, msg[3..]=the characters
+                                                            ▼
               task 5 $5A7A      copy the body to $0D5F.., length to $0D6C,
                      │          command character to $0D6D
                      ▼
               task 5 $5AE2      the dispatcher (§4)
 ```
+
+Because both ports set `msg[1] = 3`, the interpreter **cannot tell which port a
+command arrived on**.
 
 Messages are 16 bytes taken from a pool of 32 at `$0100` (`$0853`); the
 pointer for task *t* lives at `$0080 + 2t`. A reply is a message back to
@@ -124,14 +171,21 @@ that byte and transmits the rest (`$8A32`, starting at payload index 1).
 
 The other task-3 opcodes a command can generate:
 
-| Opcode | Effect | Used by |
+| Opcode | Effect | Sent by |
 | --- | --- | --- |
-| `$3D` | transmit the rest of the payload on both ports | every reply |
+| `$3D` | transmit the rest of the payload on every enabled port (`$8A32`) | every reply |
+| `$3E` | drain the UART receive ring into the external line buffer (`$8B17`) | task 0's receive interrupt |
 | `$43` | re-initialise the serial interface (`$8800`) | `'`, `:` |
-| `$47` | transmit a single `A` on port A (`$88F4`) | — |
-| `$48` | queue a single `A` on port B (`$88C9`) | — |
-| `$50` | *no-op in this build* | `#` |
+| `$47` | transmit a bare `A` on the internal port (`$88F2`) | the `SP SP` claim detector, `$C296` |
+| `$48` | queue a bare `A` on the external port (`$88C9`) | the same, `$893D` |
+| `$49` | transmit a bare `N` on the internal port (`$892C`) | an unrecognised claim, `$C334` |
+| `$4A` | queue a bare `N` on the external port (`$8903`) | the same, `$8A07` |
+| `$50` | *no-op in this build* — a bare `ret` at `$8E2E` | `#` |
 | `$52` | set the VP display mode (`$8D28`) | `VP1`–`VP5` |
+| `$63` | copy `$0BD7` to `$0BD5` (`$8E56`) | internal |
+
+The table is at `$8E6B` and covers `$3D`–`$63`; the bounds check at `$8DD5`
+drops anything outside that range. Everything not listed above is a `ret`.
 
 ## 4. The dispatcher
 
@@ -413,7 +467,7 @@ counting the `P` as byte 0.
 | 2 | 2 | chapter numbers exist | `$0CE9 != 0` | `$46FF` |
 | 2 | 1 | **CLV detected** | `$0CED & $10` | `$4723` |
 | 2 | 0 | **CAV detected** | `$0CED & $20` | `$4748` |
-| 3 | 2 | replay function active | `$0CFB != 1`, or `$0CFB & $40` clear | `$476D` |
+| 3 | 2 | replay function active | `$0CFB == 1` **and** `$FC00` bit 6 reads 0 — the `$` command *and* the rear-panel `REPLAY` switch | `$4771`, `$4777` |
 | 3 | 0 | frame lock | `$0CF8 & $20` **clear** | `$479A` |
 | 4 | 4 | RS232-C transmission delay | `$09BE == 1` (the `)` command) | `$47BE` |
 | 4 | 3 | remote control enabled | `$0DC4 == 1` (the `J` command) | `$47E1` |
@@ -452,7 +506,7 @@ a character meets them:
 | Condition | Where | Result |
 | --- | --- | --- |
 | Line longer than 12 characters with no `CR` | `$C40C` | the entire line is discarded; no reply |
-| Port A not enabled, or its mode bits not `10` | `$C361`, `$C36B` | the line is never assembled; no reply |
+| This port not enabled, or not in F-code mode | `$C361`, `$C36B`; `$8BE3`, `$8BED` | the completed line is dropped; no reply. At start-up this is the state of the internal port until module W claims it (§1.1) |
 | Command character below `$21` after masking | `$5AEE` | routed to `$5D15`, which ignores anything below `$E9`; no reply |
 | Command character `$60`–`$7F` (masks to `$60`–`$7F`, index ≥ `$3F`) | `$5B0F` | return; no reply |
 | Command character has no handler (26 of the 63) | `$5D12` | return; no reply |

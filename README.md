@@ -33,5 +33,9 @@ evidence behind the CPU identifications, and a suggested order of work.
   commands, their arguments, every reply, and the two serial ports that carry
   them. This is the command set a host reaches over RS232, or over SCSI
   through module W's `$CA`/`$C8` gateway.
+- [`docs/module-s-control.md`](docs/module-s-control.md) — control module S as
+  a machine: its hardware and memory map, the eight-task kernel, the two
+  command ports and the handshake that decides which one is in charge, and the
+  DIP switches with every effect their bits have on the running firmware.
 - [`character-set/`](character-set/) — the MB88303 character generator's font,
   extracted and verified against the data sheet.
